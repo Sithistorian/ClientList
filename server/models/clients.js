@@ -38,12 +38,14 @@ const createClient = async function(client) {
 
 const addProviderToClientUsingEmail = async function (clientEmail, providerId) {
 
-  Client.findOneAndUpdate({email: clientEmail}, {$push: {providers: providerId}}, {new: true})
-  .then(doc => {
+  try {
+    await Client.findOneAndUpdate({email: clientEmail}, {$push: {providers: providerId}}, {new: true})
     console.log(`Provider ${providerId} added to client`);
-    return doc;
-  })
-  .catch(err => console.log(`Provider ${providerId} was NOT added to client`, err))
+
+  }
+  catch(err) {
+    console.log(err)
+  }
 
 }
 
