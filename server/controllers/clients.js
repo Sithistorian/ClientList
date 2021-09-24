@@ -11,11 +11,18 @@ const getClientById = async function (req, res) {
 
 }
 
-const createClient = function (req, res) {
+const createClient = async function (req, res) {
 
-  client.createClient(req.body)
-  .then((doc) => res.send('Client created'))
-  .catch(err => console.log('Something went wrong', err))
+  try {
+    await client.createClient(req.body)
+    res.send('Client created')
+  }
+  catch(err) {
+    console.log(err)
+  }
+
+
+
 }
 
 const deleteClient = function(req, res) {
