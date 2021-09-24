@@ -25,31 +25,33 @@ const createClient = async function (req, res) {
 
 }
 
-const deleteClient = function(req, res) {
+const deleteClient = async function(req, res) {
 
   try {
-    client.deleteClient(req.body.clientId)
-    res.send('Client Deleted')
+    await client.deleteClient(req.body.clientId);
+    res.send('Client Deleted');
   }
   catch(err) {
     console.log(err)
   }
 }
 
-const getAll = function (req, res) {
+const getAll = async function (req, res) {
 
   if (req.query.populated === 'true') {
-    client.getClientsAndProvidersPopulated()
-    .then(doc => {
-      res.send(doc);
-    })
-    .catch(err => console.log('Something went wrong', err))
+    try {
+      res.send(await client.getClientsAndProvidersPopulated());
+    }
+    catch(err) {
+      console.log(err);
+    }
   } else {
-    client.getClientsAndProviders()
-    .then(doc => {
-      res.send(doc);
-    })
-    .catch(err => console.log('Something went wrong', err))
+    try {
+      res.send(await client.getClientsAndProviders());
+    }
+    catch(err) {
+      console.log(err);
+    }
   }
 }
 
