@@ -1,12 +1,14 @@
 const {client, provider } = require('../models/index.js');
 
-const getClientById = function (req, res) {
-  client.getClientById(req.params.clientId)
-  .then(doc => {
-    res.send(doc)
-    return doc}
-    )
-  .catch(err => console.log('Something went wrong', err))
+const getClientById = async function (req, res) {
+
+  try {
+    res.send(await client.getClientById(req.params.clientId))
+  }
+  catch(err) {
+    console.log(err)
+  }
+
 }
 
 const createClient = function (req, res) {
