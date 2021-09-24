@@ -16,13 +16,13 @@ const getProviderById = async function (req, res) {
 
 const createNewProvider = async function (req, res) {
 
-  provider.createNewProvider(req.body)
-  .then(() => {
-    console.log(`The provider ${req.body.name} was created`);
-    res.send(`The provider ${req.body.name} was created`)
-  })
-  .catch(err => console.log('Something went wrong', err))
-
+  try {
+    provider.createNewProvider(req.body);
+    res.send(`The provider ${req.body.name} was created`);
+  }
+  catch(err) {
+    console.log(err)
+  }
 }
 
 const changeProviderName = async function (req, res) {
