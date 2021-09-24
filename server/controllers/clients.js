@@ -26,9 +26,14 @@ const createClient = async function (req, res) {
 }
 
 const deleteClient = function(req, res) {
-  client.deleteClient(req.body.clientId)
-  .then(() => res.send('Client Deleted'))
-  .catch(err => console.log('Something went wrong', err))
+
+  try {
+    client.deleteClient(req.body.clientId)
+    res.send('Client Deleted')
+  }
+  catch(err) {
+    console.log(err)
+  }
 }
 
 const getAll = function (req, res) {
