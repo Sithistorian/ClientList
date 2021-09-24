@@ -5,9 +5,13 @@ const getProviderById = async function (req, res) {
 
   let id = req.params.providerId
 
-  let responseData = await provider.getProviderById(id);
+  try {
+    res.send(await provider.getProviderById(id));
+  }
+  catch(err){
+    console.log(err)
+  }
 
-  res.send(responseData);
 }
 
 const createNewProvider = async function (req, res) {

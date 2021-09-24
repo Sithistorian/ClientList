@@ -5,6 +5,8 @@
 
 <script>
 import requests from './logic/requests.js';
+
+
 export default {
   data() {
     return {
