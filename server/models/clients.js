@@ -18,16 +18,18 @@ const getClientById = async function (id) {
 
 const createClient = async function(client) {
 
-  Client.create({
-    name: client.name,
-    email: client.email,
-    phone: client.phone,
-    providers: client.providers
-  })
-  .then(doc => {
+  try {
+    await Client.create({
+      name: client.name,
+      email: client.email,
+      phone: client.phone,
+      providers: client.providers
+    })
     console.log('Client sucessfully created')
-  })
-  .catch(err => console.log('Could not create client', err))
+  }
+  catch(err) {
+    console.log(err)
+  }
 }
 
 // Modify Client Information
