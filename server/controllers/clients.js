@@ -55,17 +55,18 @@ const getAll = async function (req, res) {
   }
 }
 
-const modifyClient = function (req, res) {
+const modifyClient = async function (req, res) {
 
-  client.modifyClient(req.body.clientId, req.body.modifiedClient)
-  .then(() => {
-    res.send('Client modified')
-  })
-  .catch(err => console.log('Something went wrong', err))
+  try {
+    client.modifyClient(req.body.clientId, req.body.modifiedClient);
+    res.send('Client modified');
+
+  }
+  catch(err) {
+    console.log(err)
+  }
 
 }
-
-
 
 
 module.exports = {
