@@ -27,12 +27,14 @@ const createNewProvider = async function (req, res) {
 
 const changeProviderName = async function (req, res) {
 
-  provider.changeProviderName(req.body.currentProviderName, req.body.newProviderName)
-  .then(() => {
-    res.send('Name has been changed')
-  })
-  .catch(err => console.log('An error occured', err))
+  try {
+    provider.changeProviderName(req.body.currentProviderName, req.body.newProviderName);
+    res.send(`${req.body.currentProviderName} has been changed to ${req.body.newProviderName}`)
   }
+  catch(err) {
+    console.log(err)
+  }
+}
 
 
 module.exports = {
