@@ -1,4 +1,4 @@
-const {client, provider } = require('../models/index.js');
+const {client} = require('../models/index.js');
 
 const getClientById = async function (req, res) {
 

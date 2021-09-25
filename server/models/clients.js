@@ -7,7 +7,6 @@ const { Client, Provider } = require('../database/dbModels.js');
 const getClientById = async function (id) {
   try {
     return await Client.findById(id).lean();
-
   }
   catch(err) {
     console.log(err)
