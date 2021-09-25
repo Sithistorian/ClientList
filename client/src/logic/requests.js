@@ -10,10 +10,14 @@ const getAll = function (populated = 'false') {
     };
 
     axios(config)
-    .then(res => {
-      return res.data
-      console.log(JSON.stringify(res.data))})
-    .catch(err => console.log('Something went wrong', err));
+    .then(function (res) {
+      console.log(res.data)
+      this.information = res.data
+      return res.data;
+    })
+    .catch(function(err) {
+      console.log('Something went wrong', err)
+    });
   }
 
 const getClientById = function(clientId) {
@@ -23,7 +27,10 @@ const getClientById = function(clientId) {
   };
 
   axios(config)
-  .then(res => console.log(JSON.stringify(res.data)))
+  .then(res => {
+    console.log(JSON.stringify(res.data))
+    return JSON.stringify(res.data);
+  })
   .catch(err => console.log('Something went wrong', err));
 }
 
@@ -34,7 +41,10 @@ const getProviderById = function(ProviderId) {
   };
 
   axios(config)
-  .then(res => console.log(JSON.stringify(res.data)))
+  .then(res => {
+    console.log(JSON.stringify(res.data))
+    return JSON.stringify(res.data);
+  })
   .catch(err => console.log('Something went wrong', err));
 }
 
@@ -94,7 +104,6 @@ const deleteClient = function(clientId) {
   .catch(err => console.log('Something went wrong', err));
 
 }
-
 
 // Puts
 
