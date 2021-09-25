@@ -7,13 +7,22 @@
      <th>Providers</th>
      <th></th>
    </tr>
+   <tr v-for="client in clients" :key="client._id">
+   <TableRows :client="client" :providers="providers"></TableRows>
+   </tr>
   </table>
 </template>
 
 
 
 <script>
+import TableRows from './TableRows.vue';
+
 export default {
+  components: {
+    TableRows
+  },
+
   props: ["clients", "providers"],
 
   data() {
