@@ -58,9 +58,8 @@ const getAll = async function (req, res) {
 const modifyClient = async function (req, res) {
 
   try {
-    client.modifyClient(req.body.clientId, req.body.modifiedClient);
-    res.send('Client modified');
-
+   await client.modifyClient(req.body.clientId, req.body.modifiedClient);
+   res.send('Client Updated')
   }
   catch(err) {
     console.log(err)

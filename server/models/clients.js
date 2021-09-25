@@ -50,20 +50,31 @@ const addProviderToClientUsingEmail = async function (clientEmail, providerId) {
 }
 
 const modifyClient = async function(clientId, newClientObject) {
-  Client.findByIdAndUpdate(clientId, {
-    name: newClientObject.name,
-    email: newClientObject.email,
-    phone: newClientObject.phone,
-    providers: newClientObject.providers
-  }, {
-    lean: true,
-    new: true
-  })
-  .then(doc => {
-    console.log('Updated client:', doc)
-    return doc
-  })
-  .catch(err => console.log('An error occured', err))
+  try {
+    await Client.findByIdAndUpdate(clientId, {
+      name: newClientObject.name,
+      email: newClientObject.email,
+      phone: newClientObject.phone,
+      providers: newClientObject.providers
+    }, {
+      lean: true,
+      new: true
+    }, (err, model) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(model);
+        return model;
+      }
+    })
+    .then(doc => {
+      console.log('Right here', doc)
+      return doc
+    })
+  }
+  catch(err) {
+    console.log('Promise failure error',err)
+  }
 }
 
 // Delete Client

@@ -10,7 +10,9 @@ const getAll = function (populated = 'false') {
     };
 
     axios(config)
-    .then(res => console.log(JSON.stringify(res.data)))
+    .then(res => {
+      return res.data
+      console.log(JSON.stringify(res.data))})
     .catch(err => console.log('Something went wrong', err));
   }
 
