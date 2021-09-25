@@ -1,12 +1,19 @@
 <template>
-  <div>{{message}}</div>
+  <h1>Clients<span>
+    <button type="submit"></button>
+    </span></h1>
+  <client-table></client-table>
 </template>
 
 
 <script>
 import axios from 'axios';
+import ClientTable from './components/ClientTable.vue'
 
 export default {
+  components: {
+    ClientTable
+  },
   data() {
     return {
       message: 'Vue is working just fine!',
@@ -141,7 +148,4 @@ export default {
 
 <style>
 
-body {
-  color: rgb(230, 46, 46);
-}
 </style>
