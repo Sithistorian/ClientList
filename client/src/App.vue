@@ -2,7 +2,7 @@
   <h1>Clients<span>
     <button type="submit"></button>
     </span></h1>
-  <client-table></client-table>
+  <ClientTable v-bind:clients="this.clients" v-bind:providers="this.providers"></ClientTable>
 </template>
 
 

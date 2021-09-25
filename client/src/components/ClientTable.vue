@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  props: [],
+  props: ["clients", "providers"],
 
   data() {
 
