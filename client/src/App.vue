@@ -26,7 +26,12 @@ export default {
       clients: null,
       providers: null,
       showEditModal: false,
-      showNewClientModal: false
+      showNewClientModal: false,
+      clientName: null,
+      clientEmail: null,
+      clientPhone: null,
+      clientProviders: null
+
     }
   },
   methods: {
@@ -147,8 +152,13 @@ export default {
     })
     .catch(err => console.log('Something went wrong', err));
     },
-    toggleShowEditModal: function () {
+    toggleShowEditModal: function (client, providers) {
+      console.log('Here', providers);
       this.showEditModal = true;
+      this.clientName = client.name;
+      this.clientEmail = client.email;
+      this.clientPhone = client.phone;
+      this.clientProviders = providers;
     }
   },
   mounted() {
