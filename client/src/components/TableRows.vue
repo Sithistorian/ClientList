@@ -3,7 +3,7 @@
   <td>{{client.email}}</td>
   <td>{{this.modifyPhone(client.phone)}}</td>
   <td>{{this.getProviders(client.providers, this.providers)}}</td>
-  <td><button @click="showEditModal = true">Edit</button></td>
+  <td><button @click="toggleShowEditModal">Edit</button></td>
   <td><button>Delete</button></td>
 </template>
 
@@ -12,7 +12,7 @@
 <script>
 export default {
 
-  props: [ "client", "providers"],
+  props: [ "client", "providers", "toggleShowEditModal"],
   data () {
 
   },

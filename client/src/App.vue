@@ -4,7 +4,7 @@
   <h1>Clients<span>
     <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
-  <ClientTable :clients="this.clients" :providers="this.providers"></ClientTable>
+  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal"></ClientTable>
 </template>
 
 
@@ -146,6 +146,9 @@ export default {
       this.getAll()
     })
     .catch(err => console.log('Something went wrong', err));
+    },
+    toggleShowEditModal: function () {
+      this.showEditModal = true;
     }
   },
   mounted() {

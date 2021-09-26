@@ -9,7 +9,7 @@
      <th></th>
    </tr>
    <tr v-for="client in clients" :key="client._id">
-   <TableRows :client="client" :providers="providers"></TableRows>
+   <TableRows :client="client" :providers="providers" :toggleShowEditModal="toggleShowEditModal"></TableRows>
    </tr>
   </table>
 </template>
@@ -24,7 +24,7 @@ export default {
     TableRows
   },
 
-  props: ["clients", "providers"],
+  props: ["clients", "providers", "showEditModal", "toggleShowEditModal"],
 
   data() {
 
