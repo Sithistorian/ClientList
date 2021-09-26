@@ -6,6 +6,13 @@
 
 export default {
 
+  props: [
+    "clientName",
+    "clientEmail",
+    "clientPhone",
+    "clientProviders"
+      ],
+
   data() {
 
   }

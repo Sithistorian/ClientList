@@ -1,6 +1,5 @@
 <template>
-  <edit-client-modal v-if="showEditModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders"></edit-client-modal>
-  <new-client-modal v-if="showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders"></new-client-modal>
+  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal"></modal>
   <h1>Clients<span>
     <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
@@ -11,14 +10,13 @@
 <script>
 import axios from 'axios';
 import ClientTable from './components/ClientTable.vue';
-import EditClientModal from './components/EditClientModal.vue';
-import NewClientModal from './components/NewClientModal.vue';
+import Modal from './components/Modal.vue';
+
 
 export default {
   components: {
     ClientTable,
-    EditClientModal,
-    NewClientModal
+    Modal
   },
   data() {
     return {
