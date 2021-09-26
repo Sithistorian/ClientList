@@ -1,4 +1,6 @@
 <template>
+  <edit-client-modal v-if="showEditModal"></edit-client-modal>
+  <new-client-modal v-if="showNewClientModal"></new-client-modal>
   <h1>Clients<span>
     <button type="submit"></button>
     </span></h1>
@@ -8,11 +10,15 @@
 
 <script>
 import axios from 'axios';
-import ClientTable from './components/ClientTable.vue'
+import ClientTable from './components/ClientTable.vue';
+import EditClientModal from './components/EditClientModal.vue';
+import NewClientModal from './components/NewClientModal.vue';
 
 export default {
   components: {
-    ClientTable
+    ClientTable,
+    EditClientModal,
+    NewClientModal
   },
   data() {
     return {
