@@ -2,7 +2,7 @@
   <edit-client-modal v-if="showEditModal"></edit-client-modal>
   <new-client-modal v-if="showNewClientModal"></new-client-modal>
   <h1>Clients<span>
-    <button type="submit"></button>
+    <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
   <ClientTable v-bind:clients="this.clients" v-bind:providers="this.providers"></ClientTable>
 </template>

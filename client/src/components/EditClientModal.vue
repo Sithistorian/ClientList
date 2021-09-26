@@ -1,5 +1,5 @@
 <template>
-<h1>This is the Edit Client Modal</h1>
+<h1>Editing a Client</h1>
 
 </template>
 
