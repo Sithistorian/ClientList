@@ -1,10 +1,10 @@
 <template>
-  <edit-client-modal v-if="showEditModal"></edit-client-modal>
-  <new-client-modal v-if="showNewClientModal"></new-client-modal>
+  <edit-client-modal v-if="showEditModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders"></edit-client-modal>
+  <new-client-modal v-if="showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders"></new-client-modal>
   <h1>Clients<span>
     <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
-  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal"></ClientTable>
+  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation"></ClientTable>
 </template>
 
 
@@ -22,7 +22,6 @@ export default {
   },
   data() {
     return {
-      message: 'Vue is working just fine!',
       clients: null,
       providers: null,
       showEditModal: false,
@@ -152,8 +151,10 @@ export default {
     })
     .catch(err => console.log('Something went wrong', err));
     },
-    toggleShowEditModal: function (client, phone, providers) {
-      console.log('Here', providers);
+    toggleShowEditModal: function () {
+      this.showEditModal = true;
+    },
+    setFormInformation: function (client, phone, providers) {
       this.showEditModal = true;
       this.clientName = client.name;
       this.clientEmail = client.email;
