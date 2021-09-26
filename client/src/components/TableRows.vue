@@ -2,7 +2,7 @@
   <td>{{client.name}}</td>
   <td>{{client.email}}</td>
   <td>{{this.modifyPhone(client.phone)}}</td>
-  <td>{{this.getProviders(client.providers, this.providers)}}</td>
+  <td>{{this.getProviderNames(client.providers, this.providers)}}</td>
   <td><button @click="toggleShowEditModal(this.client, this.modifyPhone(client.phone), this.getProviders(client.providers, this.providers))">Edit</button></td>
   <td><button>Delete</button></td>
 </template>
@@ -14,7 +14,6 @@ export default {
 
   props: [ "client", "providers", "toggleShowEditModal"],
   data () {
-    phone: null
 
   },
   methods: {
@@ -25,8 +24,7 @@ export default {
       modified = modified.join('');
       return modified;
     },
-    getProviders: function(clientProviders, allProviders) {
-      console.log('This is the client providers:', clientProviders)
+    getProviderNames: function(clientProviders, allProviders) {
       let result = [];
       for (let i = 0; i < allProviders.length; i++) {
         if(clientProviders.includes(allProviders[i]._id)) {
@@ -34,6 +32,15 @@ export default {
         }
       }
       result = result.join(', ');
+      return result;
+    },
+    getProviders: function(clientProviders, allProviders) {
+      let result = [];
+      for (let i = 0; i < allProviders.length; i++) {
+        if(clientProviders.includes(allProviders[i]._id)) {
+          result.push(allProviders[i]);
+        }
+      }
       return result;
     }
   }
