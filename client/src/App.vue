@@ -152,12 +152,12 @@ export default {
     })
     .catch(err => console.log('Something went wrong', err));
     },
-    toggleShowEditModal: function (client, providers) {
+    toggleShowEditModal: function (client, phone, providers) {
       console.log('Here', providers);
       this.showEditModal = true;
       this.clientName = client.name;
       this.clientEmail = client.email;
-      this.clientPhone = client.phone;
+      this.clientPhone = phone;
       this.clientProviders = providers;
     }
   },
