@@ -6,6 +6,7 @@
      <th>Phone</th>
      <th>Providers</th>
      <th></th>
+     <th></th>
    </tr>
    <tr v-for="client in clients" :key="client._id">
    <TableRows :client="client" :providers="providers"></TableRows>

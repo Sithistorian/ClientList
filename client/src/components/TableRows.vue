@@ -3,7 +3,8 @@
   <td>{{client.email}}</td>
   <td>{{this.modifyPhone(client.phone)}}</td>
   <td>{{this.getProviders(client.providers, this.providers)}}</td>
-  <td></td>
+  <td><button @click="showEditModal = true">Edit</button></td>
+  <td><button>Delete</button></td>
 </template>
 
 

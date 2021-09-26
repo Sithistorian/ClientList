@@ -4,7 +4,7 @@
   <h1>Clients<span>
     <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
-  <ClientTable v-bind:clients="this.clients" v-bind:providers="this.providers"></ClientTable>
+  <ClientTable :clients="this.clients" :providers="this.providers"></ClientTable>
 </template>
 
 
