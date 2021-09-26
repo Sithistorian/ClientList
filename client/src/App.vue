@@ -18,7 +18,9 @@ export default {
     return {
       message: 'Vue is working just fine!',
       clients: null,
-      providers: null
+      providers: null,
+      showEditModal: false,
+      showNewClientModal: false
     }
   },
   methods: {
