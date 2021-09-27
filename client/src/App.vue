@@ -1,5 +1,5 @@
 <template>
-  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers"></modal>
+  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" :newProvider="newProvider" :newClient="newClient"></modal>
   <h1>Clients<span>
     <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
@@ -27,7 +27,9 @@ export default {
       clientName: null,
       clientEmail: null,
       clientPhone: null,
-      clientProviders: null
+      clientProviders: null,
+      newProvider: null,
+      newClient: null,
 
     }
   },
@@ -110,44 +112,6 @@ export default {
       })
     .catch(err => console.log('Something went wrong', err));
 
-    },
-    createNewProvider: function(provider) {
-    var data = JSON.stringify(provider);
-
-    var config = {
-      method: 'post',
-      url: 'http://localhost:3000/providers/createNewProvider/',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-
-    axios(config)
-    .then(res => {
-      console.log(res.data);
-      this.getAll();
-      })
-    .catch(err => console.log('Something went wrong', err));
-    },
-    changeProviderName: function(obj) {
-    var data = JSON.stringify(obj);
-
-    var config = {
-      method: 'put',
-      url: 'http://localhost:3000/providers/changeName',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-
-    axios(config)
-    .then(res => {
-      console.log(res.data);
-      this.getAll()
-    })
-    .catch(err => console.log('Something went wrong', err));
     },
     toggleShowEditModal: function () {
       this.showEditModal = true;
