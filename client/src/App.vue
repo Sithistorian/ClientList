@@ -1,5 +1,5 @@
 <template>
-  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" :newProvider="newProvider" :newClient="newClient"></modal>
+  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" ></modal>
   <h1>Clients<span>
     <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
@@ -28,9 +28,6 @@ export default {
       clientEmail: null,
       clientPhone: null,
       clientProviders: null,
-      newProvider: null,
-      newClient: null,
-
     }
   },
   methods: {

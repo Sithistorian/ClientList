@@ -29,9 +29,7 @@ export default {
     "clientName",
     "clientEmail",
     "clientPhone",
-    "clientProviders",
-    "newProvider",
-    "newClient"
+    "clientProviders"
       ],
 
   data() {
