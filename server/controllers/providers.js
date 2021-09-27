@@ -36,9 +36,21 @@ const changeProviderName = async function (req, res) {
   }
 }
 
+const deleteProvider = async function (req, res) {
+  try {
+    provider.deleteProvider(req.body.providerId);
+    res.send('provider deleted');
+  }
+  catch(err) {
+    console.log(err)
+  }
+
+}
+
 
 module.exports = {
   getProviderById,
   createNewProvider,
-  changeProviderName
+  changeProviderName,
+  deleteProvider
 }

@@ -105,6 +105,29 @@ const deleteClient = function(clientId) {
 
 }
 
+const deleteProvider = function(providerId) {
+  var data = JSON.stringify({
+    "providerId": providerId
+  });
+
+  var config = {
+    method: 'post',
+    url: 'http://localhost:3000/providers/deleteProvider',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    data : data
+  };
+
+  axios(config)
+  .then(res => {
+    console.log(res.data);
+  })
+  .catch(err => console.log(err));
+}
+
+deleteProvider("614ba577cfd01ff4f5107649")
+
 // Puts
 
 const changeProviderName = function(obj) {
@@ -143,6 +166,7 @@ const modifyClient = function(obj) {
 
 module.exports = {
   modifyClient,
+  deleteProvider,
   createClient,
   changeProviderName,
   deleteClient,

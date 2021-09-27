@@ -39,7 +39,6 @@ const createNewProvider = async function (provider) {
       lean: true
     })
     .then(doc => {
-      //I could do error handling here but it feels hacky
       console.log(`Provider name changed from ${currentProviderName} to ${newProviderName}`);
       return doc
     })
@@ -47,9 +46,16 @@ const createNewProvider = async function (provider) {
 
     }
 
+  const deleteProvider = async function(providerId) {
+    Provider.deleteOne({_id: providerId})
+    .then(doc => console.log(`Provider ${providerId} was removed`))
+    .catch(err => console.log(err))
+  }
+
 
 module.exports = {
   getProviderById,
   createNewProvider,
-  changeProviderName
+  changeProviderName,
+  deleteProvider
 }
