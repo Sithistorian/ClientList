@@ -9,20 +9,23 @@
   <input  id="clientPhone" type="text"/><br>
   <label for="clientProviders">Providers</label>
   <input  id="clientProvidrs" type="text"/>
-  <button>Add Provider</button>
-    <ProvidersDropDown :provider="provider"></ProvidersDropDown>
+  <button>Add Provider</button><br>
+  <div v-for="provider in providers" :key="provider._id">
+    <ProvidersCheckBoxes :provider="provider"></ProvidersCheckBoxes>
+  </div>
   </form>
 
 
 </template>
 
 <script>
-import ProvidersDropDown from './ProvidersDropDown.vue'
+import ProvidersCheckBoxes from './ProvidersCheckBoxes.vue'
 
 export default {
-  components: { ProvidersDropDown },
+  components: { ProvidersCheckBoxes },
 
   props: [
+    "providers",
     "clientName",
     "clientEmail",
     "clientPhone",

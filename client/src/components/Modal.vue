@@ -2,7 +2,7 @@
 <h1 v-if="showEditModal">Editing a Client</h1>
 <h1 v-if="showNewClientModal">Adding a Client</h1>
 <h1>Client</h1>
-<Form :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders"></Form>
+<Form :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :providers="providers"></Form>
 <h1 v-if="showEditModal"><button>Delete</button><button>Cancel</button><button>Add Client</button></h1>
 <h1 v-if="showNewClientModal"><button>Cancel</button><button>Save Client</button></h1>
 </template>
@@ -15,6 +15,7 @@ export default {
     Form
   },
   props: [
+    "providers",
     "clientName",
     "clientEmail",
     "clientPhone",

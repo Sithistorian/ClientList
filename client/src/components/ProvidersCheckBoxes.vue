@@ -1,6 +1,7 @@
 <template>
 
-<option>{{this.provider.name}}</option>
+<input type="checkbox" id="this.provider._id"/>
+<label for="this.provider._id">{{this.provider.name}}</label>
 
 </template>
 
