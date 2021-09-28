@@ -1,6 +1,6 @@
 <template>
 <h1>The form is rendering</h1>
-  <form>
+  <form id="form">
   <label :for="clientName">Name</label>
   <input  :id="clientName" type="text" v-model="name"/><br>
   <label :for="clientEmail">Email</label>
