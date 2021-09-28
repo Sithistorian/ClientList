@@ -11,7 +11,7 @@
   <input  id="clientProviders" type="text" v-model="newProvider"/>
   <button @click.prevent="this.createNewProvider({name: this.newProvider}); this.$emit('get-all')">Add Provider</button><br>
   <div v-for="provider in providers" :key="provider._id">
-    <ProvidersCheckBoxes :provider="provider" @get-all="this.$emit('get-all')"></ProvidersCheckBoxes>
+    <ProvidersCheckBoxes :provider="provider" @get-all="this.$emit('get-all')" @checked-or-not="manageProviders"></ProvidersCheckBoxes>
   </div>
   </form>
 
@@ -60,7 +60,15 @@ export default {
         console.log(res.data);
         })
       .catch(err => console.log('Something went wrong', err));
+      },
+    manageProviders: function (checked, provider) {
+      debugger;
+      if(checked){
+        if(!this.clientProviders.includes(provider)){
+          this.clientProviders.push(provider)
+        }
       }
+    }
   },
 
   emits: ["get-all"],

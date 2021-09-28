@@ -1,6 +1,6 @@
 <template>
 
-<input type="checkbox" :id="this.checkboxId"/>
+<input type="checkbox" :id="this.checkboxId" v-model="checked" @change="$emit('checked-or-not', checked, provider)"/>
 
 <label v-if="!editingProviderName" :for="this.checkboxId" >{{this.provider.name}}</label>
 <input v-if="editingProviderName" v-model="newProviderName" type="text" :id="this.checkboxId" :placeholder="this.checkboxPlaceholder" @keyup.enter="this.changeProviderName(this.nameChangeObj); this.toggleEditingProviderName(); this.$emit('get-all')"/>
@@ -19,7 +19,8 @@ export default {
   data() {
     return {
       editingProviderName: false,
-      newProviderName: ''
+      newProviderName: '',
+      checked: null
     }
   },
 
