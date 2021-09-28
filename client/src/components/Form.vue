@@ -60,26 +60,7 @@ export default {
         console.log(res.data);
         })
       .catch(err => console.log('Something went wrong', err));
-      },
-    changeProviderName: function(obj) {
-      var data = JSON.stringify(obj);
-
-      var config = {
-        method: 'put',
-        url: 'http://localhost:3000/providers/changeName',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data : data
-      };
-
-      axios(config)
-      .then(res => {
-        console.log(res.data);
-        this.getAll()
-      })
-      .catch(err => console.log('Something went wrong', err));
-      },
+      }
   },
 
   emits: ["get-all"],

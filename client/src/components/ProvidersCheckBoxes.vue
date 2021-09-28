@@ -2,7 +2,7 @@
 
 <input type="checkbox" :id="this.checkboxId"/>
 <label v-if="!editingProviderName" :for="this.checkboxId" >{{this.provider.name}}</label>
-<input v-if="editingProviderName" type="text" :id="this.checkboxId" :placeholder="this.checkboxPlaceholder"/>
+<input v-if="editingProviderName" v-model="newProviderName" type="text" :id="this.checkboxId" :placeholder="this.checkboxPlaceholder" @keyup.enter="this.changeProviderName({currentProviderName: this.checkboxPlaceholder, newProviderName: this.newProviderName}); this.toggleEditingProviderName(); this.$emit('get-all')"/>
 <button @click.prevent="toggleEditingProviderName"><i class="fa fa-edit"></i></button>
 <button @click.prevent="this.deleteProvider(this.provider._id); this.$emit('get-all')"><i class="fa fa-trash"></i></button>
 
@@ -16,7 +16,8 @@ export default {
 
   data() {
     return {
-      editingProviderName: false
+      editingProviderName: false,
+      newProviderName: ''
     }
   },
 
@@ -52,6 +53,24 @@ export default {
           console.log(res.data);
         })
         .catch(err => console.log(err));
+      },
+    changeProviderName: function(obj) {
+      var data = JSON.stringify(obj);
+
+      var config = {
+        method: 'put',
+        url: 'http://localhost:3000/providers/changeName',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+
+      axios(config)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => console.log('Something went wrong', err));
       },
     toggleEditingProviderName: function () {
       if (!this.editingProviderName) {
