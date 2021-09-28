@@ -2,7 +2,7 @@
 
 <input type="checkbox" :id="this.checkboxId"/>
 <label v-if="!editingProviderName" :for="this.checkboxId" >{{this.provider.name}}</label>
-<input v-if="editingProviderName" v-model="newProviderName" type="text" :id="this.checkboxId" :placeholder="this.checkboxPlaceholder" @keyup.enter="this.changeProviderName({currentProviderName: this.checkboxPlaceholder, newProviderName: this.newProviderName}); this.toggleEditingProviderName(); this.$emit('get-all')"/>
+<input v-if="editingProviderName" v-model="newProviderName" type="text" :id="this.checkboxId" :placeholder="this.checkboxPlaceholder" @keyup.enter="this.changeProviderName(this.nameChangeObj); this.toggleEditingProviderName(); this.$emit('get-all')"/>
 <button @click.prevent="toggleEditingProviderName"><i class="fa fa-edit"></i></button>
 <button @click.prevent="this.deleteProvider(this.provider._id); this.$emit('get-all')"><i class="fa fa-trash"></i></button>
 
@@ -27,6 +27,12 @@ export default {
     },
     checkboxPlaceholder () {
       return this.provider.name
+    },
+    nameChangeObj () {
+      return {
+        currentProviderName: this.checkboxPlaceholder,
+        newProviderName: this.newProviderName
+        }
     }
 
   },
