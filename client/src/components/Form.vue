@@ -11,7 +11,7 @@
   <input  id="clientProviders" type="text" v-model="newProvider"/>
   <button @click.prevent="this.createNewProvider({name: this.newProvider}); this.$emit('get-all')">Add Provider</button><br>
   <div v-for="provider in providers" :key="provider._id">
-    <ProvidersCheckBoxes :provider="provider"></ProvidersCheckBoxes>
+    <ProvidersCheckBoxes :provider="provider" @get-all="this.$emit('get-all')"></ProvidersCheckBoxes>
   </div>
   </form>
 
@@ -43,26 +43,6 @@ export default {
       ],
 
   methods: {
-    deleteProvider: function(providerId) {
-      var data = JSON.stringify({
-        "providerId": providerId
-      });
-
-      var config = {
-        method: 'post',
-        url: 'http://localhost:3000/providers/deleteProvider',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        data : data
-      };
-
-      axios(config)
-      .then(res => {
-        console.log(res.data);
-      })
-      .catch(err => console.log(err));
-    },
     createNewProvider: function(provider) {
       var data = JSON.stringify(provider);
 
