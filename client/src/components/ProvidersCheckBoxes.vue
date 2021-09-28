@@ -54,7 +54,11 @@ export default {
         .catch(err => console.log(err));
       },
     toggleEditingProviderName: function () {
-      this.editingProviderName = true;
+      if (!this.editingProviderName) {
+        this.editingProviderName = true;
+      } else {
+        this.editingProviderName = false;
+      }
       }
     },
 
