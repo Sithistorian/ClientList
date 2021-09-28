@@ -9,7 +9,7 @@
   <input  id="clientPhone" type="text" v-model="phone"/><br>
   <label for="clientProviders">Providers</label>
   <input  id="clientProviders" type="text" v-model="newProvider"/>
-  <button>Add Provider</button><br>
+  <button @click.prevent="this.createNewProvider({name: this.newProvider}); this.$emit('created-new-provider')">Add Provider</button><br>
   <div v-for="provider in providers" :key="provider._id">
     <ProvidersCheckBoxes :provider="provider"></ProvidersCheckBoxes>
   </div>
@@ -19,10 +19,20 @@
 </template>
 
 <script>
+import axios from 'axios';
 import ProvidersCheckBoxes from './ProvidersCheckBoxes.vue'
 
 export default {
   components: { ProvidersCheckBoxes },
+
+  data() {
+    return {
+      newProvider: null,
+      name: this.clientName,
+      email: this.clientEmail,
+      phone: this.clientPhone
+    }
+  },
 
   props: [
     "providers",
@@ -31,17 +41,6 @@ export default {
     "clientPhone",
     "clientProviders"
       ],
-
-  data() {
-    return {
-      newProvider: null,
-      name: this.clientName,
-      email: this.clientEmail,
-      phone: this.clientPhone,
-      providers: this.clientProviders
-
-    }
-  },
 
   methods: {
     deleteProvider: function(providerId) {
@@ -79,7 +78,6 @@ export default {
       axios(config)
       .then(res => {
         console.log(res.data);
-        this.getAll();
         })
       .catch(err => console.log('Something went wrong', err));
       },
@@ -102,7 +100,10 @@ export default {
       })
       .catch(err => console.log('Something went wrong', err));
       },
-  }
+  },
+
+  emits: ["create-new-provider"],
+
 
 }
 

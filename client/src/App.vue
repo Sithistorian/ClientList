@@ -1,9 +1,9 @@
 <template>
-  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" ></modal>
+  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" @pass-to-app="getAll"></modal>
   <h1>Clients<span>
     <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
-  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation"></ClientTable>
+  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation" ></ClientTable>
 </template>
 
 
