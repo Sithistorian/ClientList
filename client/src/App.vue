@@ -1,5 +1,5 @@
 <template>
-  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" @get-all="getAll" @toggle-edit-modal="toggleShowEditModal"></modal>
+  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" @get-all="getAll" @toggle-edit-modal="toggleShowEditModal" @toggle-new-client-modal="toggleShowNewClientModal"></modal>
   <h1>Clients<span>
     <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
@@ -111,7 +111,22 @@ export default {
 
     },
     toggleShowEditModal: function () {
-      this.showEditModal = true;
+
+      if(this.showEditModal) {
+        this.showEditModal = false;
+      }
+      if(!this.showEditModal){
+        this.showEditModal = true;
+      }
+    },
+    toggleShowNewClientModal: function () {
+      if(this.showNewClientModal) {
+        this.showNewClientModal = false;
+      }
+      if(!this.showNewClientModal){
+        this.showNewClientModal = true;
+      }
+
     },
     setFormInformation: function (client, phone, providers) {
       this.showEditModal = true;

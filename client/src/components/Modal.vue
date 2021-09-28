@@ -12,7 +12,7 @@
   <button form="form" type="submit">Save Client</button>
 </h1>
 <h1 v-if="showNewClientModal">
-  <button form="form" type="submit">Cancel</button>
+  <button form="form" type="submit" @toggle-new-client-modal="this.emit('toggle-new-client-modal')">Cancel</button>
   <button form="form" type="submit">Add Client</button>
 </h1>
 </template>
@@ -35,7 +35,7 @@ export default {
     "showNewClientModal"
       ],
 
-  emits: ["get-all"]
+  emits: ["get-all", "toggle-edit-modal", "toggle-new-client-modal"]
 }
 </script>
 
