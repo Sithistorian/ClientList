@@ -1,5 +1,5 @@
 <template>
-  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" @get-all="getAll"></modal>
+  <modal v-if="showEditModal | showNewClientModal" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" @get-all="getAll" @toggle-edit-modal="toggleShowEditModal"></modal>
   <h1>Clients<span>
     <button @click="showNewClientModal = true">New Client</button>
     </span></h1>
