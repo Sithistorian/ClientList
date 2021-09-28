@@ -9,7 +9,7 @@
   <input  id="clientPhone" type="text" v-model="phone"/><br>
   <label for="clientProviders">Providers</label>
   <input  id="clientProviders" type="text" v-model="newProvider"/>
-  <button @click.prevent="this.createNewProvider({name: this.newProvider}); this.$emit('created-new-provider')">Add Provider</button><br>
+  <button @click.prevent="this.createNewProvider({name: this.newProvider}); this.$emit('get-all')">Add Provider</button><br>
   <div v-for="provider in providers" :key="provider._id">
     <ProvidersCheckBoxes :provider="provider"></ProvidersCheckBoxes>
   </div>
@@ -102,7 +102,7 @@ export default {
       },
   },
 
-  emits: ["create-new-provider"],
+  emits: ["get-all"],
 
 
 }
