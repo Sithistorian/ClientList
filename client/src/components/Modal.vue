@@ -10,7 +10,7 @@
 :clientPhone="clientPhone"
 :clientProviders="clientProviders"
 :providers="providers"
-@get-all="this.$emit('get-all')"
+@get-all="$emit('get-all')"
 @modified-client="setModifiedClient"
 @new-client="setNewClient">
 </Form>
@@ -116,7 +116,7 @@ export default {
     axios(config)
     .then(res => {
       console.log(res.data);
-      this.getAll();
+      this.$emit('get-all');
       })
     .catch(err => console.log('Something went wrong', err));
 
