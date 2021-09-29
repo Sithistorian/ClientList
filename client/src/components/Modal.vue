@@ -16,12 +16,12 @@
 
 <h1 v-if="showEditModal">
   <button form="form" type="submit">Delete</button>
-  <button form="form" type="submit" @toggle-edit-modal="this.emit('toggle-edit-modal')">Cancel</button>
-  <button form="form" type="submit" @click.prevent="modifyClient(this.modifiedClient)">Save Client</button>
+  <button form="form" type="submit" @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel</button>
+  <button form="form" type="submit" @click.prevent="modifyClient(this.modifiedClient); $emit('toggle-edit-modal')">Save Client</button>
 </h1>
 
 <h1 v-if="showNewClientModal">
-  <button form="form" type="submit" @toggle-new-client-modal="this.emit('toggle-new-client-modal')">Cancel</button>
+  <button form="form" type="submit" @toggle-new-client-modal="$emit('toggle-new-client-modal')">Cancel</button>
   <button form="form" type="submit">Add Client</button>
 </h1>
 </template>
@@ -56,7 +56,6 @@ export default {
         this.modifiedClient = mod;
       },
     modifyClient: function(obj) {
-      debugger;
       var data = JSON.stringify(obj);
 
       var config = {
@@ -75,6 +74,48 @@ export default {
         })
       .catch(err => console.log('Something went wrong', err));
       },
+    createClient: function(client) {
+    var data = JSON.stringify(client);
+
+    var config = {
+      method: 'post',
+      url: 'http://localhost:3000/clients/createClient/',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+    .then(res => {
+      console.log(res.data);
+      this.getAll();
+    })
+    .catch(err => console.log('Something went wrong', err));
+    },
+    deleteClient: function(clientId) {
+
+    var data = JSON.stringify({
+      "clientId": clientId
+    });
+
+    var config = {
+      method: 'post',
+      url: 'http://localhost:3000/clients/deleteClient/',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+    .then(res => {
+      console.log(res.data);
+      this.getAll();
+      })
+    .catch(err => console.log('Something went wrong', err));
+
+    },
 
   },
 

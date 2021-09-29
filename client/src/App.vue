@@ -67,48 +67,6 @@ export default {
         console.log('Something went wrong', err)
       });
     },
-    createClient: function(client) {
-    var data = JSON.stringify(client);
-
-    var config = {
-      method: 'post',
-      url: 'http://localhost:3000/clients/createClient/',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-
-    axios(config)
-    .then(res => {
-      console.log(res.data);
-      this.getAll();
-    })
-    .catch(err => console.log('Something went wrong', err));
-    },
-    deleteClient: function(clientId) {
-
-    var data = JSON.stringify({
-      "clientId": clientId
-    });
-
-    var config = {
-      method: 'post',
-      url: 'http://localhost:3000/clients/deleteClient/',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-
-    axios(config)
-    .then(res => {
-      console.log(res.data);
-      this.getAll();
-      })
-    .catch(err => console.log('Something went wrong', err));
-
-    },
     toggleShowEditModal: function () {
       if(this.showEditModal) {
         this.showEditModal = false;
