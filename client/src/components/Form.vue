@@ -94,26 +94,29 @@ export default {
         }
 
       }
+      this.$emit('get-all')
     }
   },
 
   computed: {
     modifiedClient () {
-      return {
+      let mod = {
           clientId: this.id,
           modifiedClient:  {
             name: this.name,
             email: this.email,
-            phone: this.phone,
+            phone: parseInt(this.clientPhone.split('-').join('')),
             providers: this.clientProviders
           }
-      }
+        };
+      this.$emit('modified-client', mod)
+      return mod;
     },
     newClient () {
       return {
             name: this.name,
             email: this.email,
-            phone: this.phone,
+            phone: parseInt(this.clientPhone.split('-').join('')),
             providers: this.clientProviders
       }
     }

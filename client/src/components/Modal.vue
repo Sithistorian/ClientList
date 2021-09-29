@@ -10,13 +10,14 @@
 :clientPhone="clientPhone"
 :clientProviders="clientProviders"
 :providers="providers"
-@get-all="this.$emit('get-all')">
+@get-all="this.$emit('get-all')"
+@modified-client="setModifiedClient">
 </Form>
 
 <h1 v-if="showEditModal">
   <button form="form" type="submit">Delete</button>
   <button form="form" type="submit" @toggle-edit-modal="this.emit('toggle-edit-modal')">Cancel</button>
-  <button form="form" type="submit" @submit.prevent="console.log(e)">Save Client</button>
+  <button form="form" type="submit" @click.prevent="modifyClient(this.modifiedClient)">Save Client</button>
 </h1>
 
 <h1 v-if="showNewClientModal">
@@ -27,10 +28,17 @@
 
 <script>
 import Form from './Form.vue';
+import axios from 'axios';
 
 export default {
   components: {
     Form
+  },
+
+  data () {
+    return {
+      modifiedClient: null
+    }
   },
 
   props: [
@@ -43,6 +51,32 @@ export default {
     "showEditModal",
     "showNewClientModal"
       ],
+  methods: {
+    setModifiedClient: function (mod) {
+        this.modifiedClient = mod;
+      },
+    modifyClient: function(obj) {
+      debugger;
+      var data = JSON.stringify(obj);
+
+      var config = {
+        method: 'put',
+        url: 'http://localhost:3000/clients/modifyClient',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        data : data
+      };
+
+      axios(config)
+      .then(res => {
+        console.log('Modified the Client for sure!', res.data);
+        this.$emit('get-all')
+        })
+      .catch(err => console.log('Something went wrong', err));
+      },
+
+  },
 
   emits: ["get-all", "toggle-edit-modal", "toggle-new-client-modal"]
 }

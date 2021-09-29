@@ -45,7 +45,7 @@ export default {
       clientName: null,
       clientEmail: null,
       clientPhone: null,
-      clientProviders: [],
+      clientProviders: []
     }
   },
   methods: {
@@ -84,25 +84,6 @@ export default {
       console.log(res.data);
       this.getAll();
     })
-    .catch(err => console.log('Something went wrong', err));
-    },
-    modifyClient: function(obj) {
-    var data = JSON.stringify(obj);
-
-    var config = {
-      method: 'put',
-      url: 'http://localhost:3000/clients/modifyClient',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      data : data
-    };
-
-    axios(config)
-    .then(res => {
-      console.log(res.data);
-      this.getAll()
-      })
     .catch(err => console.log('Something went wrong', err));
     },
     deleteClient: function(clientId) {
