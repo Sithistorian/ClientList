@@ -19,7 +19,12 @@
     </span>
   </h1>
 
-  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation" @toggle-show-edit-modal="toggleShowEditModal">
+  <ClientTable
+  :clients="this.clients"
+  :providers="this.providers"
+  :toggleShowEditModal="toggleShowEditModal"
+  :setFormInformation="setFormInformation"
+  @toggle-show-edit-modal="toggleShowEditModal">
   </ClientTable>
 </template>
 

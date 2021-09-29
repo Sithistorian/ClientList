@@ -1,9 +1,9 @@
 <template>
   <td>{{client.name}}</td>
   <td>{{client.email}}</td>
-  <td>{{this.modifyPhone(client.phone)}}</td>
+  <td>{{modifyPhone}}</td>
   <td>{{this.getProviderNames(client.providers, this.providers)}}</td>
-  <td><button @click="setFormInformation(this.client, this.modifyPhone(client.phone), this.getProviders(client.providers, this.providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
+  <td><button @click="setFormInformation(this.client, modifyPhone, this.getProviders(client.providers, this.providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
   <td><button>Delete</button></td>
 </template>
 
@@ -17,13 +17,6 @@ export default {
 
   },
   methods: {
-    modifyPhone: function (clientPhone) {
-      let modified = clientPhone.toString().split('');
-      modified.splice(3, 0, '-');
-      modified.splice(7, 0, '-');
-      modified = modified.join('');
-      return modified;
-    },
     getProviderNames: function(clientProviders, allProviders) {
       let result = [];
       for (let i = 0; i < allProviders.length; i++) {
@@ -42,6 +35,16 @@ export default {
         }
       }
       return result;
+    }
+  },
+
+  computed: {
+    modifyPhone: function () {
+      let modified = this.client.phone.toString().split('');
+      modified.splice(3, 0, '-');
+      modified.splice(7, 0, '-');
+      modified = modified.join('');
+      return modified;
     }
   }
 }
