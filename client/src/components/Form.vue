@@ -1,17 +1,28 @@
 <template>
   <form id="form">
+
   <label :for="clientName">Name</label>
   <input  :id="clientName" type="text" v-model="name"/><br>
+
   <label :for="clientEmail">Email</label>
   <input  :id="clientEmail" type="email" v-model="email"/><br>
+
   <label :for="clientPhone">Phone</label>
   <input  :id="clientPhone" type="text" v-model="phone"/><br>
+
   <label for="clientProviders">Providers</label>
   <input  id="clientProviders" type="text" v-model="newProvider"/>
+
   <button @click.prevent="this.createNewProvider({name: this.newProvider}); this.$emit('get-all')">Add Provider</button><br>
+
   <div v-for="provider in providers" :key="provider._id">
-    <ProvidersCheckBoxes :provider="provider" @get-all="this.$emit('get-all')" @checked-or-not="manageProviders" ></ProvidersCheckBoxes>
+    <ProvidersCheckBoxes
+    :provider="provider"
+    @get-all="this.$emit('get-all')"
+    @checked-or-not="manageProviders" >
+    </ProvidersCheckBoxes>
   </div>
+
   </form>
 
 
@@ -108,7 +119,7 @@ export default {
     }
   },
 
-  emits: ["get-all"],
+  emits: ["get-all", "checked-or-not"],
 
 
 }

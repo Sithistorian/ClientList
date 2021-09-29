@@ -1,9 +1,26 @@
 <template>
-  <modal v-if="showEditModal | showNewClientModal" :clientId="clientId" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" @get-all="getAll" @toggle-edit-modal="toggleShowEditModal" @toggle-new-client-modal="toggleShowNewClientModal"></modal>
-  <h1>Clients<span>
-    <button @click="toggleShowNewClientModal">New Client</button>
-    </span></h1>
-  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation" @toggle-show-edit-modal="toggleShowEditModal"></ClientTable>
+  <Modal v-if="showEditModal | showNewClientModal"
+  :clientId="clientId"
+  :clientName="clientName"
+  :clientEmail="clientEmail"
+  :clientPhone="clientPhone"
+  :clientProviders="clientProviders"
+  :showEditModal="showEditModal"
+  :showNewClientModal="showNewClientModal"
+  :providers="providers"
+  @get-all="getAll"
+  @toggle-edit-modal="toggleShowEditModal"
+  @toggle-new-client-modal="toggleShowNewClientModal">
+  </Modal>
+
+  <h1>Clients
+    <span>
+      <button @click="toggleShowNewClientModal">New Client</button>
+    </span>
+  </h1>
+
+  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation" @toggle-show-edit-modal="toggleShowEditModal">
+  </ClientTable>
 </template>
 
 
@@ -28,7 +45,7 @@ export default {
       clientName: null,
       clientEmail: null,
       clientPhone: null,
-      clientProviders: null,
+      clientProviders: [],
     }
   },
   methods: {

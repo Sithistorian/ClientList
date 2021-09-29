@@ -4,13 +4,21 @@
 
 <h1>Client</h1>
 
-<Form :clientId="clientId" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :providers="providers" @get-all="this.$emit('get-all')"></Form>
+<Form :clientId="clientId"
+:clientName="clientName"
+:clientEmail="clientEmail"
+:clientPhone="clientPhone"
+:clientProviders="clientProviders"
+:providers="providers"
+@get-all="this.$emit('get-all')">
+</Form>
 
 <h1 v-if="showEditModal">
   <button form="form" type="submit">Delete</button>
   <button form="form" type="submit" @toggle-edit-modal="this.emit('toggle-edit-modal')">Cancel</button>
-  <button form="form" type="submit">Save Client</button>
+  <button form="form" type="submit" @submit.prevent="console.log(e)">Save Client</button>
 </h1>
+
 <h1 v-if="showNewClientModal">
   <button form="form" type="submit" @toggle-new-client-modal="this.emit('toggle-new-client-modal')">Cancel</button>
   <button form="form" type="submit">Add Client</button>
