@@ -9,7 +9,7 @@
      <th></th>
    </tr>
    <tr v-for="client in clients" :key="client._id">
-   <TableRows :client="client" :providers="providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation"></TableRows>
+   <TableRows :client="client" :providers="providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation" @toggle-show-edit-modal="$emit('toggle-show-edit-modal')"></TableRows>
    </tr>
   </table>
 </template>
@@ -43,7 +43,7 @@ table {
   width: 80%;
 }
 
-td, th {
+th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;

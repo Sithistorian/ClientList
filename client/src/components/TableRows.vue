@@ -3,7 +3,7 @@
   <td>{{client.email}}</td>
   <td>{{this.modifyPhone(client.phone)}}</td>
   <td>{{this.getProviderNames(client.providers, this.providers)}}</td>
-  <td><button @click="setFormInformation(this.client, this.modifyPhone(client.phone), this.getProviders(client.providers, this.providers)); toggleShowEditModal">Edit</button></td>
+  <td><button @click="setFormInformation(this.client, this.modifyPhone(client.phone), this.getProviders(client.providers, this.providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
   <td><button>Delete</button></td>
 </template>
 
@@ -12,7 +12,7 @@
 <script>
 export default {
 
-  props: [ "client", "providers", "toggleShowEditModal", "setFormInformation"],
+  props: [ "client", "providers", "setFormInformation"],
   data () {
 
   },
@@ -51,5 +51,11 @@ export default {
 
 
 <style scoped>
+
+td {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
 
 </style>

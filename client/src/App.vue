@@ -1,9 +1,9 @@
 <template>
   <modal v-if="showEditModal | showNewClientModal" :clientId="clientId" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :showEditModal="showEditModal" :showNewClientModal="showNewClientModal" :providers="providers" @get-all="getAll" @toggle-edit-modal="toggleShowEditModal" @toggle-new-client-modal="toggleShowNewClientModal"></modal>
   <h1>Clients<span>
-    <button @click="showNewClientModal = true">New Client</button>
+    <button @click="toggleShowNewClientModal">New Client</button>
     </span></h1>
-  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation" ></ClientTable>
+  <ClientTable :clients="this.clients" :providers="this.providers" :toggleShowEditModal="toggleShowEditModal" :setFormInformation="setFormInformation" @toggle-show-edit-modal="toggleShowEditModal"></ClientTable>
 </template>
 
 
@@ -112,25 +112,31 @@ export default {
 
     },
     toggleShowEditModal: function () {
-
       if(this.showEditModal) {
         this.showEditModal = false;
-      }
-      if(!this.showEditModal){
-        this.showEditModal = true;
+      } else {
+        if(!this.showNewClientModal) {
+          this.showEditModal = true;
+        } else {
+          this.toggleShowNewClientModal();
+          this.showEditModal = true;
+        }
       }
     },
     toggleShowNewClientModal: function () {
       if(this.showNewClientModal) {
         this.showNewClientModal = false;
-      }
-      if(!this.showNewClientModal){
-        this.showNewClientModal = true;
+      } else {
+        if(!this.showEditModal) {
+          this.showNewClientModal = true;
+        } else {
+          this.toggleShowEditModal();
+          this.showNewClientModal = true;
+        }
       }
 
     },
     setFormInformation: function (client, phone, providers) {
-      this.showEditModal = true;
       this.clientId = client._id;
       this.clientName = client.name;
       this.clientEmail = client.email;
