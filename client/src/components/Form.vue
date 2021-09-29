@@ -62,11 +62,27 @@ export default {
       .catch(err => console.log('Something went wrong', err));
       },
     manageProviders: function (checked, provider) {
-      debugger;
+
       if(checked){
-        if(!this.clientProviders.includes(provider)){
+        debugger;
+        let present = false;
+        for (let i = 0; i < this.clientProviders.length; i++){
+          if (provider.name === this.clientProviders[i].name) {
+            present = true;
+            break;
+          }
+        }
+        if(!present) {
           this.clientProviders.push(provider)
         }
+      } else {
+        debugger;
+        for (let i = 0; i < this.clientProviders.length; i++){
+          if (provider.name === this.clientProviders[i].name) {
+            this.clientProviders.splice(i, 1);
+          }
+        }
+
       }
     }
   },
