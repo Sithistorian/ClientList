@@ -11,7 +11,7 @@
   <input  id="clientProviders" type="text" v-model="newProvider"/>
   <button @click.prevent="this.createNewProvider({name: this.newProvider}); this.$emit('get-all')">Add Provider</button><br>
   <div v-for="provider in providers" :key="provider._id">
-    <ProvidersCheckBoxes :provider="provider" @get-all="this.$emit('get-all')" @checked-or-not="manageProviders"></ProvidersCheckBoxes>
+    <ProvidersCheckBoxes :provider="provider" @get-all="this.$emit('get-all')" @checked-or-not="manageProviders" ></ProvidersCheckBoxes>
   </div>
   </form>
 
@@ -28,6 +28,7 @@ export default {
   data() {
     return {
       newProvider: null,
+      id: this.clientId,
       name: this.clientName,
       email: this.clientEmail,
       phone: this.clientPhone
@@ -36,6 +37,7 @@ export default {
 
   props: [
     "providers",
+    "clientId",
     "clientName",
     "clientEmail",
     "clientPhone",
@@ -64,7 +66,6 @@ export default {
     manageProviders: function (checked, provider) {
 
       if(checked){
-        debugger;
         let present = false;
         for (let i = 0; i < this.clientProviders.length; i++){
           if (provider.name === this.clientProviders[i].name) {
@@ -76,13 +77,34 @@ export default {
           this.clientProviders.push(provider)
         }
       } else {
-        debugger;
         for (let i = 0; i < this.clientProviders.length; i++){
           if (provider.name === this.clientProviders[i].name) {
             this.clientProviders.splice(i, 1);
           }
         }
 
+      }
+    }
+  },
+
+  computed: {
+    modifiedClient () {
+      return {
+          clientId: this.id,
+          modifiedClient:  {
+            name: this.name,
+            email: this.email,
+            phone: this.phone,
+            providers: this.clientProviders
+          }
+      }
+    },
+    newClient () {
+      return {
+            name: this.name,
+            email: this.email,
+            phone: this.phone,
+            providers: this.clientProviders
       }
     }
   },

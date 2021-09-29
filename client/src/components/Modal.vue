@@ -4,7 +4,7 @@
 
 <h1>Client</h1>
 
-<Form :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :providers="providers" @get-all="this.$emit('get-all')"></Form>
+<Form :clientId="clientId" :clientName="clientName" :clientEmail="clientEmail" :clientPhone="clientPhone" :clientProviders="clientProviders" :providers="providers" @get-all="this.$emit('get-all')"></Form>
 
 <h1 v-if="showEditModal">
   <button form="form" type="submit">Delete</button>
@@ -27,6 +27,7 @@ export default {
 
   props: [
     "providers",
+    "clientId",
     "clientName",
     "clientEmail",
     "clientPhone",
