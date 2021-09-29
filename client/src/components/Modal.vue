@@ -11,7 +11,8 @@
 :clientProviders="clientProviders"
 :providers="providers"
 @get-all="this.$emit('get-all')"
-@modified-client="setModifiedClient">
+@modified-client="setModifiedClient"
+@new-client="setNewClient">
 </Form>
 
 <h1 v-if="showEditModal">
@@ -22,7 +23,7 @@
 
 <h1 v-if="showNewClientModal">
   <button form="form" type="submit" @toggle-new-client-modal="$emit('toggle-new-client-modal')">Cancel</button>
-  <button form="form" type="submit">Add Client</button>
+  <button form="form" type="submit" @click.prevent="createClient(this.newClient); $emit('toggle-new-client-modal')">Add Client</button>
 </h1>
 </template>
 
@@ -37,7 +38,8 @@ export default {
 
   data () {
     return {
-      modifiedClient: null
+      modifiedClient: null,
+      newClient: null
     }
   },
 
@@ -54,6 +56,9 @@ export default {
   methods: {
     setModifiedClient: function (mod) {
         this.modifiedClient = mod;
+      },
+    setNewClient: function (newClient) {
+      this.newClient = newClient;
       },
     modifyClient: function(obj) {
       var data = JSON.stringify(obj);
@@ -89,10 +94,10 @@ export default {
     axios(config)
     .then(res => {
       console.log(res.data);
-      this.getAll();
+      this.$emit('get-all')
     })
     .catch(err => console.log('Something went wrong', err));
-    },
+      },
     deleteClient: function(clientId) {
 
     var data = JSON.stringify({
@@ -115,7 +120,7 @@ export default {
       })
     .catch(err => console.log('Something went wrong', err));
 
-    },
+      },
 
   },
 

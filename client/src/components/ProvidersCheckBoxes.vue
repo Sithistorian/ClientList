@@ -6,7 +6,7 @@
 <input v-if="editingProviderName" v-model="newProviderName" type="text" :id="this.checkboxId" :placeholder="this.checkboxPlaceholder" @keyup.enter="this.changeProviderName(this.nameChangeObj); this.toggleEditingProviderName()"/>
 
 <button @click.prevent="toggleEditingProviderName"><i class="fa fa-edit"></i></button>
-<button @click.prevent="this.deleteProvider(this.provider._id); this.$emit('get-all')"><i class="fa fa-trash"></i></button>
+<button @click.prevent="this.deleteProvider(this.provider._id); $emit('get-all')"><i class="fa fa-trash"></i></button>
 
 </template>
 

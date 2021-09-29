@@ -113,12 +113,15 @@ export default {
       return mod;
     },
     newClient () {
-      return {
-            name: this.name,
-            email: this.email,
-            phone: parseInt(this.clientPhone.split('-').join('')),
-            providers: this.clientProviders
+      let newClient = {
+            name: this.name ? this.name : null,
+            email: this.email ? this.email : null,
+            phone: this.clientPhone ? parseInt(this.clientPhone.split('-').join('')) : null,
+            providers: this.clientProviders ? this.clientProviders : null
       }
+      this.$emit('new-client', newClient)
+      return newClient
+
     }
   },
 
