@@ -4,12 +4,14 @@
   <td>{{modifyPhone}}</td>
   <td>{{getProviderNames(client.providers, providers)}}</td>
   <td><button @click="setSelectedClient(client, modifyPhone, getProviders(client.providers, providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
-  <td><button>Delete</button></td>
+  <td><button @click="deleteClient(client._id)">Delete</button></td>
 </template>
 
 
 
 <script>
+import axios from 'axios';
+
 export default {
 
   props: [ "client", "providers", "setSelectedClient"],
@@ -32,7 +34,29 @@ export default {
         }
       }
       return result;
-    }
+    },
+    deleteClient: function(clientId) {
+    var data = JSON.stringify({
+      "clientId": clientId
+    });
+
+    var config = {
+      method: 'post',
+      url: 'http://localhost:3000/clients/deleteClient/',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+    axios(config)
+    .then(res => {
+      console.log(res.data);
+        })
+    .then(() => this.$emit('get-all'))
+    .catch(err => console.log('Something went wrong', err));
+
+      },
   },
 
   computed: {
