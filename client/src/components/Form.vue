@@ -1,17 +1,17 @@
 <template>
   <form id="form">
 
-  <label :for="clientName">Name</label>
-  <input  :id="clientName" type="text" v-model="name"/><br>
+  <label :for="selectedClient.name">Name</label>
+  <input  :id="selectedClient.name" type="text" v-model="name"/><br>
 
-  <label :for="clientEmail">Email</label>
-  <input  :id="clientEmail" type="email" v-model="email"/><br>
+  <label :for="selectedClient.email">Email</label>
+  <input  :id="selectedClient.email" type="email" v-model="email"/><br>
 
-  <label :for="clientPhone">Phone</label>
-  <input  :id="clientPhone" type="text" v-model="phone"/><br>
+  <label :for="selectedClient.phone">Phone</label>
+  <input  :id="selectedClient.phone" type="text" v-model="phone"/><br>
 
-  <label for="clientProviders">Providers</label>
-  <input  id="clientProviders" type="text" v-model="newProvider"/>
+  <label for="selectedClientProviders">Providers</label>
+  <input  id="selectedClientProviders" type="text" v-model="newProvider"/>
 
   <button @click.prevent="this.createNewProvider({name: this.newProvider}); this.$emit('get-all')">Add Provider</button><br>
 
@@ -38,20 +38,17 @@ export default {
   data() {
     return {
       newProvider: null,
-      id: this.clientId,
-      name: this.clientName,
-      email: this.clientEmail,
-      phone: this.clientPhone
+      id: this.selectedClient.id,
+      name: this.selectedClient.name,
+      email: this.selectedClient.email,
+      phone: this.selectedClient.phone
     }
   },
 
   props: [
-    "providers",
-    "clientId",
-    "clientName",
-    "clientEmail",
-    "clientPhone",
-    "clientProviders"
+    "selectedClient",
+    "clientProviders",
+    "providers"
       ],
 
   methods: {
@@ -70,26 +67,29 @@ export default {
       axios(config)
       .then(res => {
         console.log(res.data);
+        this.$emit('get-all');
         })
       .catch(err => console.log('Something went wrong', err));
       },
     manageProviders: function (checked, provider) {
 
+      let providers = this.selectedClient.providers;
+
       if(checked){
         let present = false;
-        for (let i = 0; i < this.clientProviders.length; i++){
-          if (provider.name === this.clientProviders[i].name) {
+        for (let i = 0; i < providers.length; i++){
+          if (provider.name === providers[i].name) {
             present = true;
             break;
           }
         }
         if(!present) {
-          this.clientProviders.push(provider)
+          providers.push(provider)
         }
       } else {
-        for (let i = 0; i < this.clientProviders.length; i++){
-          if (provider.name === this.clientProviders[i].name) {
-            this.clientProviders.splice(i, 1);
+        for (let i = 0; i < providers.length; i++){
+          if (provider.name === providers[i].name) {
+            providers.splice(i, 1);
           }
         }
 
@@ -105,8 +105,8 @@ export default {
           modifiedClient:  {
             name: this.name,
             email: this.email,
-            phone: parseInt(this.clientPhone.split('-').join('')),
-            providers: this.clientProviders
+            phone: parseInt(this.selectedClient.phone.split('-').join('')),
+            providers: this.selectedClient.providers
           }
         };
       this.$emit('modified-client', mod)
@@ -116,8 +116,8 @@ export default {
       let newClient = {
             name: this.name ? this.name : null,
             email: this.email ? this.email : null,
-            phone: this.clientPhone ? parseInt(this.clientPhone.split('-').join('')) : null,
-            providers: this.clientProviders ? this.clientProviders : null
+            phone: this.selectedClient.phone ? parseInt(this.selectedClient.phone.split('-').join('')) : null,
+            providers: this.selectedClient.providers ? this.selectedClient.providers : null
       }
       this.$emit('new-client', newClient)
       return newClient

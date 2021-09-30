@@ -90,7 +90,7 @@ export default {
       }
     },
 
-  emits: ["get-all"]
+  emits: ["get-all", "checked-or-not"]
 
 }
 </script>

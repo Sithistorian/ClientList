@@ -1,10 +1,6 @@
 <template>
   <Modal v-if="showEditModal | showNewClientModal"
-  :clientId="clientId"
-  :clientName="clientName"
-  :clientEmail="clientEmail"
-  :clientPhone="clientPhone"
-  :clientProviders="clientProviders"
+  :selectedClient="selectedClient"
   :showEditModal="showEditModal"
   :showNewClientModal="showNewClientModal"
   :providers="providers"
@@ -47,11 +43,13 @@ export default {
       providers: null,
       showEditModal: false,
       showNewClientModal: false,
-      clientId: null,
-      clientName: null,
-      clientEmail: null,
-      clientPhone: null,
-      clientProviders: []
+      selectedClient: {
+        id: null,
+        name: null,
+        email: null,
+        phone: null,
+        providers: []
+      }
     }
   },
   methods: {
@@ -98,11 +96,14 @@ export default {
 
     },
     setSelectedClient: function (client, phone, providers) {
-      this.clientId = client._id;
-      this.clientName = client.name;
-      this.clientEmail = client.email;
-      this.clientPhone = phone;
-      this.clientProviders = providers;
+      this.selectedClient = {
+        id: client._id,
+        name: client.name,
+        email: client.email,
+        phone: phone,
+        providers: providers,
+
+      }
     }
   },
   mounted() {

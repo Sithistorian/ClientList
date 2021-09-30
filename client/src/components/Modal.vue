@@ -4,11 +4,8 @@
 
 <h1>Client</h1>
 
-<Form :clientId="clientId"
-:clientName="clientName"
-:clientEmail="clientEmail"
-:clientPhone="clientPhone"
-:clientProviders="clientProviders"
+<Form
+:selectedClient="selectedClient"
 :providers="providers"
 @get-all="$emit('get-all')"
 @modified-client="setModifiedClient"
@@ -45,11 +42,7 @@ export default {
 
   props: [
     "providers",
-    "clientId",
-    "clientName",
-    "clientEmail",
-    "clientPhone",
-    "clientProviders",
+    "selectedClient",
     "showEditModal",
     "showNewClientModal"
       ],
