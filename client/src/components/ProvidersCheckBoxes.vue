@@ -41,7 +41,7 @@ export default {
     }
   },
 
-  props: ["provider", "selectedClientProviders", "showEditModal", "showNewClientModal"],
+  props: ["provider", "selectedClientProviders", "showEditModal"],
 
   methods: {
     deleteProvider: function(providerId) {

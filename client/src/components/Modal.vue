@@ -6,7 +6,6 @@
 
 <Form
 :showEditModal="showEditModal"
-:showNewClientModal="showNewClientModal"
 :selectedClient="selectedClient"
 :providers="providers"
 @get-all="$emit('get-all')"
@@ -14,7 +13,7 @@
 </Form>
 
 <h1 v-if="showEditModal">
-  <button form="form" type="submit">Delete</button>
+  <button form="form" type="submit" @click.prevent="deleteClient(this.selectedClient.id)">Delete</button>
   <button form="form" type="submit" @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel</button>
   <button form="form" type="submit" @click.prevent="modifyClient(this.formInformation)">Save Client</button>
 </h1>
@@ -110,8 +109,9 @@ export default {
     axios(config)
     .then(res => {
       console.log(res.data);
-      this.$emit('get-all');
-      })
+      this.$emit('get-all')
+        })
+    .then(() => this.$emit('toggle-edit-modal'))
     .catch(err => console.log('Something went wrong', err));
 
       },

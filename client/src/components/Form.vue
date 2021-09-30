@@ -20,7 +20,6 @@
     :provider="provider"
     :selectedClientProviders="selectedClient.providers"
     :showEditModal="showEditModal"
-    :showNewClientModal="showNewClientModal"
     @get-all="$emit('get-all')"
     @checked-or-not="manageProviders" >
     </ProvidersCheckBoxes>
@@ -50,8 +49,7 @@ export default {
   props: [
     "selectedClient",
     "providers",
-    "showEditModal",
-    "showNewClientModal"
+    "showEditModal"
       ],
 
   methods: {
