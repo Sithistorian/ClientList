@@ -18,6 +18,7 @@
   <div v-for="provider in providers" :key="provider._id">
     <ProvidersCheckBoxes
     :provider="provider"
+    :selectedClientProviders="selectedClient.providers"
     @get-all="this.$emit('get-all')"
     @checked-or-not="manageProviders" >
     </ProvidersCheckBoxes>
@@ -47,7 +48,6 @@ export default {
 
   props: [
     "selectedClient",
-    "clientProviders",
     "providers"
       ],
 

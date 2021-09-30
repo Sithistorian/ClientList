@@ -24,6 +24,8 @@ export default {
     }
   },
 
+  props: ["providers"],
+
   computed: {
     checkboxId () {
       return this.provider._id
@@ -37,10 +39,9 @@ export default {
         newProviderName: this.newProviderName
         }
     }
-
   },
 
-  props: ["provider"],
+  props: ["provider", "selectedClientProviders"],
 
   methods: {
     deleteProvider: function(providerId) {
@@ -87,10 +88,21 @@ export default {
       } else {
         this.editingProviderName = false;
       }
+      },
+    checkedOrNot () {
+        for (let i = 0; i < this.selectedClientProviders.length; i++) {
+          if(this.provider._id === this.selectedClientProviders[i]._id) {
+            this.checked = true;
+          }
+        }
       }
     },
 
-  emits: ["get-all", "checked-or-not"]
+  emits: ["get-all", "checked-or-not"],
+
+  mounted () {
+    this.checkedOrNot()
+  }
 
 }
 </script>
