@@ -2,8 +2,8 @@
   <td>{{client.name}}</td>
   <td>{{client.email}}</td>
   <td>{{modifyPhone}}</td>
-  <td>{{this.getProviderNames(client.providers, this.providers)}}</td>
-  <td><button @click="setFormInformation(this.client, modifyPhone, this.getProviders(client.providers, this.providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
+  <td>{{getProviderNames(client.providers, providers)}}</td>
+  <td><button @click="setSelectedClient(client, modifyPhone, getProviders(client.providers, providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
   <td><button>Delete</button></td>
 </template>
 
@@ -12,10 +12,7 @@
 <script>
 export default {
 
-  props: [ "client", "providers", "setFormInformation"],
-  data () {
-
-  },
+  props: [ "client", "providers", "setSelectedClient"],
   methods: {
     getProviderNames: function(clientProviders, allProviders) {
       let result = [];

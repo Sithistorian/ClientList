@@ -12,8 +12,9 @@
    <TableRows
    :client="client"
    :providers="providers"
-   :setFormInformation="setFormInformation"
-   @toggle-show-edit-modal="$emit('toggle-show-edit-modal')"></TableRows>
+   :setSelectedClient="setSelectedClient"
+   @toggle-show-edit-modal="$emit('toggle-show-edit-modal')">
+   </TableRows>
    </tr>
   </table>
 </template>
@@ -28,11 +29,8 @@ export default {
     TableRows
   },
 
-  props: ["clients", "providers", "setFormInformation"],
-
-  data() {
-
-  }
+  props: ["clients", "providers", "setSelectedClient"],
+  emits: ["toggle-show-edit-modal"]
 }
 </script>
 

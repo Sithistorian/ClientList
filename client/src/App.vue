@@ -23,8 +23,9 @@
   :clients="this.clients"
   :providers="this.providers"
   :toggleShowEditModal="toggleShowEditModal"
-  :setFormInformation="setFormInformation"
+  :setSelectedClient="setSelectedClient"
   @toggle-show-edit-modal="toggleShowEditModal">
+
   </ClientTable>
 </template>
 
@@ -55,7 +56,6 @@ export default {
   },
   methods: {
     getAll: function(populated = 'false') {
-
       var config = {
         method: 'get',
         url: `http://localhost:3000/all/?populated=${populated}`
@@ -97,7 +97,7 @@ export default {
       }
 
     },
-    setFormInformation: function (client, phone, providers) {
+    setSelectedClient: function (client, phone, providers) {
       this.clientId = client._id;
       this.clientName = client.name;
       this.clientEmail = client.email;
