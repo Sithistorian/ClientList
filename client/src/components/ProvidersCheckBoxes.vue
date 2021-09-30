@@ -1,12 +1,12 @@
 <template>
 
 <input type="checkbox" :id="this.checkboxId" v-model="checked" @change="$emit('checked-or-not', checked, provider); $emit('get-all')"/>
-<label v-if="!editingProviderName" :for="this.checkboxId" >{{this.provider.name}}</label>
+<label v-if="!editingProviderName" :for="checkboxId" >{{provider.name}}</label>
 
-<input v-if="editingProviderName" v-model="newProviderName" type="text" :id="this.checkboxId" :placeholder="this.checkboxPlaceholder" @keyup.enter="this.changeProviderName(this.nameChangeObj); this.toggleEditingProviderName()"/>
+<input v-if="editingProviderName" v-model="newProviderName" type="text" :id="provider._id" :placeholder="provider.name" @keyup.enter="changeProviderName(this.nameChangeObj)"/>
 
-<button @click.prevent="toggleEditingProviderName"><i class="fa fa-edit"></i></button>
-<button @click.prevent="this.deleteProvider(this.provider._id); $emit('get-all')"><i class="fa fa-trash"></i></button>
+<button type="button" @click.prevent="toggleEditingProviderName"><i class="fa fa-edit"></i></button>
+<button type="button" @click.prevent="deleteProvider(this.provider._id); $emit('get-all')"><i class="fa fa-trash"></i></button>
 
 </template>
 
@@ -24,18 +24,12 @@ export default {
     }
   },
 
-  props: ["providers"],
+  props: ["providers", "provider"],
 
   computed: {
-    checkboxId () {
-      return this.provider._id
-    },
-    checkboxPlaceholder () {
-      return this.provider.name
-    },
     nameChangeObj () {
       return {
-        currentProviderName: this.checkboxPlaceholder,
+        currentProviderName: this.provider.name,
         newProviderName: this.newProviderName
         }
     }
@@ -80,6 +74,8 @@ export default {
       .then(res => {
         console.log(res.data);
       })
+      .then(this.$emit('get-all'))
+      .then(this.toggleEditingProviderName())
       .catch(err => console.log('Something went wrong', err));
       },
     toggleEditingProviderName: function () {
@@ -97,8 +93,8 @@ export default {
           }
         }
       }
-      }
-    },
+      },
+  },
 
   emits: ["get-all", "checked-or-not"],
 

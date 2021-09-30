@@ -11,9 +11,12 @@
   <input  :id="selectedClient.phone" type="tel" v-model="phone"/><br>
 
   <label for="selectedClientProviders">Providers</label>
-  <input  id="selectedClientProviders" type="text" v-model="newProvider"/>
+  <input  id="selectedClientProviders" type="text" v-model="newProvider" @keyup.enter="createNewProvider({name: newProvider}); resetNewProvider(); $emit('get-all')"/>
 
-  <button @click.prevent="this.createNewProvider({name: newProvider}); $emit('get-all')">Add Provider</button><br>
+  <button type="button"
+  @click.prevent="createNewProvider({name: newProvider}); resetNewProvider(); $emit('get-all')">Add Provider
+  </button><br>
+
 
   <div v-for="provider in providers" :key="provider._id">
     <ProvidersCheckBoxes
@@ -115,6 +118,9 @@ export default {
         providers: this.selectedClient.providers
       }
       this.$emit('form-information', formData)
+    },
+    resetNewProvider() {
+      this.newProvider = null;
     }
   },
 
