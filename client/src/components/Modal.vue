@@ -15,7 +15,7 @@
 <h1 v-if="showEditModal">
   <button form="form" type="submit">Delete</button>
   <button form="form" type="submit" @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel</button>
-  <button form="form" type="submit" @click.prevent="modifyClient(this.modifiedClient); $emit('toggle-edit-modal')">Save Client</button>
+  <button form="form" type="submit" @click.prevent="modifyClient(this.modifiedClient)">Save Client</button>
 </h1>
 
 <h1 v-if="showNewClientModal">
@@ -70,6 +70,7 @@ export default {
         console.log('Modified the Client for sure!', res.data);
         this.$emit('get-all')
         })
+      .then(() => this.$emit('toggle-edit-modal'))
       .catch(err => console.log('Something went wrong', err));
       },
     createClient: function(client) {

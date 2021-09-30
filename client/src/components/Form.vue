@@ -13,20 +13,18 @@
   <label for="selectedClientProviders">Providers</label>
   <input  id="selectedClientProviders" type="text" v-model="newProvider"/>
 
-  <button @click.prevent="this.createNewProvider({name: this.newProvider}); this.$emit('get-all')">Add Provider</button><br>
+  <button @click.prevent="this.createNewProvider({name: newProvider}); $emit('get-all')">Add Provider</button><br>
 
   <div v-for="provider in providers" :key="provider._id">
     <ProvidersCheckBoxes
     :provider="provider"
     :selectedClientProviders="selectedClient.providers"
-    @get-all="this.$emit('get-all')"
+    @get-all="$emit('get-all')"
     @checked-or-not="manageProviders" >
     </ProvidersCheckBoxes>
   </div>
 
   </form>
-
-
 </template>
 
 <script>
@@ -95,10 +93,7 @@ export default {
 
       }
       this.$emit('get-all')
-    }
-  },
-
-  computed: {
+    },
     modifiedClient () {
       let mod = {
           clientId: this.id,
@@ -110,7 +105,6 @@ export default {
           }
         };
       this.$emit('modified-client', mod)
-      return mod;
     },
     newClient () {
       let newClient = {
@@ -120,12 +114,16 @@ export default {
             providers: this.selectedClient.providers ? this.selectedClient.providers : null
       }
       this.$emit('new-client', newClient)
-      return newClient
 
     }
   },
 
   emits: ["get-all", "checked-or-not"],
+
+  mounted () {
+    this.modifiedClient(),
+    this.newClient()
+  }
 
 
 }
