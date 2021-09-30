@@ -13,7 +13,8 @@
    :client="client"
    :providers="providers"
    :setSelectedClient="setSelectedClient"
-   @toggle-show-edit-modal="$emit('toggle-show-edit-modal')">
+   @toggle-show-edit-modal="$emit('toggle-show-edit-modal')"
+   @get-all="$emit('get-all')">
    </TableRows>
    </tr>
   </table>
@@ -30,7 +31,7 @@ export default {
   },
 
   props: ["clients", "providers", "setSelectedClient"],
-  emits: ["toggle-show-edit-modal"]
+  emits: ["toggle-show-edit-modal", "get-all"]
 }
 </script>
 

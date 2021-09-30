@@ -82,8 +82,8 @@ const deleteClient = async function (clientId) {
 
   try {
     Client.findByIdAndDelete(clientId)
-    .then(res => console.log('Here',res))
-    console.log('Sucessfully removed client');
+    .then(res => console.log('Sucessfully removed client', res))
+    .catch(err => console.log(err))
   }
   catch(err) {
     console.log(err)

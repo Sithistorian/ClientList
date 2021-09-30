@@ -67,7 +67,9 @@ export default {
       modified = modified.join('');
       return modified;
     }
-  }
+  },
+
+  emits: ["get-all"]
 }
 
 </script>

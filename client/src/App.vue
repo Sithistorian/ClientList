@@ -20,6 +20,7 @@
   :providers="providers"
   :toggleShowEditModal="toggleShowEditModal"
   :setSelectedClient="setSelectedClient"
+  @get-all="getAll"
   @toggle-show-edit-modal="toggleShowEditModal">
 
   </ClientTable>
