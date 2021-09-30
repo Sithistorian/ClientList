@@ -8,7 +8,7 @@
   <input  :id="selectedClient.email" type="email" v-model="email"/><br>
 
   <label :for="selectedClient.phone">Phone</label>
-  <input  :id="selectedClient.phone" type="text" v-model="phone"/><br>
+  <input  :id="selectedClient.phone" type="tel" v-model="phone"/><br>
 
   <label for="selectedClientProviders">Providers</label>
   <input  id="selectedClientProviders" type="text" v-model="newProvider"/>
@@ -41,6 +41,7 @@ export default {
       name: this.selectedClient.name,
       email: this.selectedClient.email,
       phone: this.selectedClient.phone
+
     }
   },
 
@@ -94,35 +95,31 @@ export default {
       }
       this.$emit('get-all')
     },
-    modifiedClient () {
-      let mod = {
-          clientId: this.id,
-          modifiedClient:  {
-            name: this.name,
-            email: this.email,
-            phone: parseInt(this.selectedClient.phone.split('-').join('')),
-            providers: this.selectedClient.providers
-          }
-        };
-      this.$emit('modified-client', mod)
-    },
-    newClient () {
-      let newClient = {
-            name: this.name ? this.name : null,
-            email: this.email ? this.email : null,
-            phone: this.selectedClient.phone ? parseInt(this.selectedClient.phone.split('-').join('')) : null,
-            providers: this.selectedClient.providers ? this.selectedClient.providers : null
+    validateForm () {
+      let valid = true;
+      if (!this.name || !this.email || !this.phone) {
+        valid = false;
       }
-      this.$emit('new-client', newClient)
-
+      if(valid) {
+        this.sendFormInformation()
+      }
+    },
+    sendFormInformation () {
+      let formData = {
+        id: this.id ? this.id : null,
+        name: this.name,
+        email: this.email,
+        phone: this.phone,
+        providers: this.selectedClient.providers
+      }
+      this.$emit('form-information', formData)
     }
   },
 
   emits: ["get-all", "checked-or-not"],
 
-  mounted () {
-    this.modifiedClient(),
-    this.newClient()
+  updated () {
+    this.validateForm()
   }
 
 

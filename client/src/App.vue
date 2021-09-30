@@ -16,8 +16,8 @@
   </h1>
 
   <ClientTable
-  :clients="this.clients"
-  :providers="this.providers"
+  :clients="clients"
+  :providers="providers"
   :toggleShowEditModal="toggleShowEditModal"
   :setSelectedClient="setSelectedClient"
   @toggle-show-edit-modal="toggleShowEditModal">

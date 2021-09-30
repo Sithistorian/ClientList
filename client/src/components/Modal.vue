@@ -8,19 +8,18 @@
 :selectedClient="selectedClient"
 :providers="providers"
 @get-all="$emit('get-all')"
-@modified-client="setModifiedClient"
-@new-client="setNewClient">
+@form-information="setFormInformation">
 </Form>
 
 <h1 v-if="showEditModal">
   <button form="form" type="submit">Delete</button>
   <button form="form" type="submit" @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel</button>
-  <button form="form" type="submit" @click.prevent="modifyClient(this.modifiedClient)">Save Client</button>
+  <button form="form" type="submit" @click.prevent="modifyClient(this.formInformation)">Save Client</button>
 </h1>
 
 <h1 v-if="showNewClientModal">
   <button form="form" type="submit" @toggle-new-client-modal="$emit('toggle-new-client-modal')">Cancel</button>
-  <button form="form" type="submit" @click.prevent="createClient(this.newClient); $emit('toggle-new-client-modal')">Add Client</button>
+  <button form="form" type="submit" @click.prevent="createClient(this.formInformation); $emit('toggle-new-client-modal')">Add Client</button>
 </h1>
 </template>
 
@@ -35,8 +34,7 @@ export default {
 
   data () {
     return {
-      modifiedClient: null,
-      newClient: null
+      formInformation: null
     }
   },
 
@@ -115,6 +113,26 @@ export default {
     .catch(err => console.log('Something went wrong', err));
 
       },
+    setFormInformation (formData) {
+      if(this.showEditModal) {
+        this.formInformation = {
+          clientId: formData.id,
+          modifiedClient: {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone.split('-').join(''),
+            providers: formData.providers
+          }
+        }
+      } else {
+        this.formInformation = {
+          name: formData.name,
+            email: formData.email,
+            phone: formData.phone.split('-').join(''),
+            providers: formData.providers
+        }
+      }
+    }
 
   },
 
