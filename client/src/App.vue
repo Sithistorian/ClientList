@@ -102,7 +102,6 @@ export default {
         email: client.email,
         phone: phone,
         providers: providers,
-
       }
     }
   },

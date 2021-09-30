@@ -19,6 +19,8 @@
     <ProvidersCheckBoxes
     :provider="provider"
     :selectedClientProviders="selectedClient.providers"
+    :showEditModal="showEditModal"
+    :showNewClientModal="showNewClientModal"
     @get-all="$emit('get-all')"
     @checked-or-not="manageProviders" >
     </ProvidersCheckBoxes>
@@ -37,17 +39,19 @@ export default {
   data() {
     return {
       newProvider: null,
-      id: this.selectedClient.id,
-      name: this.selectedClient.name,
-      email: this.selectedClient.email,
-      phone: this.selectedClient.phone
+      id: this.showEditModal ? this.selectedClient.id : null,
+      name: this.showEditModal ? this.selectedClient.name : null,
+      email: this.showEditModal ? this.selectedClient.email : null,
+      phone: this.showEditModal ? this.selectedClient.phone : null
 
     }
   },
 
   props: [
     "selectedClient",
-    "providers"
+    "providers",
+    "showEditModal",
+    "showNewClientModal"
       ],
 
   methods: {

@@ -41,7 +41,7 @@ export default {
     }
   },
 
-  props: ["provider", "selectedClientProviders"],
+  props: ["provider", "selectedClientProviders", "showEditModal", "showNewClientModal"],
 
   methods: {
     deleteProvider: function(providerId) {
@@ -90,11 +90,13 @@ export default {
       }
       },
     checkedOrNot () {
+      if(this.showEditModal) {
         for (let i = 0; i < this.selectedClientProviders.length; i++) {
           if(this.provider._id === this.selectedClientProviders[i]._id) {
             this.checked = true;
           }
         }
+      }
       }
     },
 

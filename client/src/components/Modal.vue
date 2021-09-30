@@ -5,6 +5,8 @@
 <h1>Client</h1>
 
 <Form
+:showEditModal="showEditModal"
+:showNewClientModal="showNewClientModal"
 :selectedClient="selectedClient"
 :providers="providers"
 @get-all="$emit('get-all')"
