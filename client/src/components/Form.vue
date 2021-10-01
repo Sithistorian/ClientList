@@ -139,6 +139,11 @@ export default {
 
 <style scoped>
 
+label {
+  color: #35017F;
+  font-size: 16px;
+}
+
 #form {
   align-self: center;
 }
@@ -167,16 +172,37 @@ export default {
   position: relative;
   left: -20px;
   height: 35px;
+
+  border: solid;
+  border-width: 1px;
+  border-radius: .5%;
+  background-image: linear-gradient(white, rgb(245, 244, 244));
+}
+
+#form-add-provider-button:hover {
+  position: relative;
+  left: -20px;
+  height: 35px;
+
+  border: solid;
+  border-width: 1px;
+  border-radius: .5%;
+  background-image: linear-gradient(rgb(245, 244, 244), white);
+  transition: ease-in-out;
+  cursor: pointer;
 }
 
 #form-providers-list {
   position: relative;
   left: 50px;
   width: 305px;
+  height: 200px;
 
   border: solid;
   border-width: 1px;
   border-radius: .5%;
+
+  overflow: scroll;
 }
 
 </style>
