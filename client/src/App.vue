@@ -10,9 +10,7 @@
   </Modal>
 
   <h1 id="app-top-bar">Clients
-    <span>
       <button id="app-newClient-button" @click="toggleShowNewClientModal">New Client</button>
-    </span>
   </h1>
 
   <ClientTable
@@ -115,7 +113,10 @@ export default {
 <style scoped>
 
 #app-top-bar {
+
 /* position */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   width: 88.9%;
   margin-left: auto;
   margin-right: auto;
@@ -135,9 +136,14 @@ export default {
   padding-top: 20px;
 }
 
-
-
 #app-newClient-button {
+  /* position */
+  justify-self: right;
+  align-self: center;
+
+  border-radius: 8%;
+  width: 100px;
+  height: 35px;
 
 }
 
