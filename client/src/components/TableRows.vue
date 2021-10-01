@@ -3,8 +3,8 @@
   <td>{{client.email}}</td>
   <td>{{modifyPhone}}</td>
   <td class="table-rows-provider-table-data">{{getProviderNames(client.providers, providers)}}</td>
-  <td><button @click="setSelectedClient(client, modifyPhone, getProviders(client.providers, providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
-  <td><button @click="deleteClient(client._id)">Delete</button></td>
+  <td><button id="table-rows-edit-button" @click="setSelectedClient(client, modifyPhone, getProviders(client.providers, providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
+  <td><button id="table-rows-delete-button" @click="deleteClient(client._id)">Delete</button></td>
 </template>
 
 
@@ -91,6 +91,25 @@ td {
   padding: 8px;
   word-wrap: break-word;
   max-width: 250px;
+}
+
+button {
+  background-color: white;
+  border-color: transparent;
+  color: #35017F;
+  font-size: 1em;
+}
+
+button:hover {
+  background-color: white;
+  border-color: #35017F;
+  border-top-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+  color: #35017F;
+  cursor: pointer;
+  font-size: 1em;
+  transition: ease-in-out;
 }
 
 </style>
