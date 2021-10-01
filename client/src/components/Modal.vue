@@ -165,7 +165,12 @@ export default {
   z-index: 1;
 
   background-color: white;
-  border: #35017F;
+  border-color: #35017F;
+  border: solid;
+  border-width: 2px;
+
+  display: flex;
+  flex-direction: column;
 
 }
 

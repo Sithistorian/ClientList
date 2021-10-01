@@ -1,16 +1,16 @@
 <template>
   <form id="form">
 
-  <label :for="selectedClient.name">Name</label>
-  <input  :id="selectedClient.name" type="text" v-model="name"/><br>
+  <label :for="selectedClient.name" class="form-label">Name:</label>
+  <input  :id="selectedClient.name" class="form-text-input" type="text" v-model="name"/><br>
 
-  <label :for="selectedClient.email">Email</label>
-  <input  :id="selectedClient.email" type="email" v-model="email"/><br>
+  <label :for="selectedClient.email" class="form-label">Email:</label>
+  <input  :id="selectedClient.email" class="form-text-input" type="email" v-model="email"/><br>
 
-  <label :for="selectedClient.phone">Phone</label>
-  <input  :id="selectedClient.phone" type="tel" v-model="phone"/><br>
+  <label :for="selectedClient.phone" class="form-label">Phone:</label>
+  <input  :id="selectedClient.phone" class="form-text-input" type="tel" v-model="phone"/><br>
 
-  <label for="selectedClientProviders">Providers</label>
+  <label for="selectedClientProviders" class="form-label">Providers:</label>
   <input  id="selectedClientProviders" type="text" v-model="newProvider" @keyup.enter="createNewProvider({name: newProvider}); resetNewProvider()"/>
 
   <button type="button"
@@ -137,5 +137,13 @@ export default {
 
 
 <style scoped>
+
+#form {
+  align-self: center;
+}
+
+.form-text-input {
+  align-items: center;
+}
 
 </style>
