@@ -1,7 +1,7 @@
 <template>
   <table>
    <tr>
-     <th>Name</th>
+     <th><strong>Name</strong></th>
      <th>Email</th>
      <th>Phone</th>
      <th>Providers</th>
@@ -43,7 +43,9 @@ export default {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 80%;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 th {

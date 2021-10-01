@@ -9,9 +9,9 @@
   @toggle-new-client-modal="toggleShowNewClientModal">
   </Modal>
 
-  <h1>Clients
+  <h1 id="app-top-bar">Clients
     <span>
-      <button @click="toggleShowNewClientModal">New Client</button>
+      <button id="app-newClient-button" @click="toggleShowNewClientModal">New Client</button>
     </span>
   </h1>
 
@@ -112,6 +112,33 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
-</style>
+#app-top-bar {
+/* position */
+  width: 88.9%;
+  margin-left: auto;
+  margin-right: auto;
+
+/* height */
+  height: 60px;
+
+/* font */
+  font-family: arial, sans-serif;
+  color: #35017F;
+
+/* border */
+  margin-bottom: 0;
+  border: 1px solid #dddddd;
+  border-bottom: 0;
+  padding: .5vw;
+  padding-top: 20px;
+}
+
+
+
+#app-newClient-button {
+
+}
+
+</style>>

@@ -5,7 +5,7 @@
 
 <input v-if="editingProviderName" v-model="newProviderName" type="text" :id="provider._id" :placeholder="provider.name" @keyup.enter="changeProviderName(this.nameChangeObj)"/>
 
-<button type="button" @click.prevent="toggleEditingProviderName"><i class="fa fa-edit"></i></button>
+<button type="button" @click.prevent="changeProviderName(this.nameChangeObj)"><i class="fa fa-edit"></i></button>
 <button type="button" @click.prevent="deleteProvider(this.provider._id); $emit('get-all')"><i class="fa fa-trash"></i></button>
 
 </template>
