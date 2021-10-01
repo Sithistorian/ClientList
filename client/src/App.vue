@@ -136,7 +136,7 @@ export default {
   padding-top: 20px;
 
   /* background */
-  background-color: #ded4ed;
+  background-color: #e9e2f4;
 }
 
 #app-newClient-button {
@@ -148,8 +148,22 @@ export default {
   width: 100px;
   height: 35px;
 
-  background-image: linear-gradient(#dddddd, #35017F);
+  background-image: linear-gradient(#e9e2f4, #35017F);
   color: white;
+}
+#app-newClient-button:hover {
+  justify-self: right;
+  align-self: center;
+
+  border-radius: 8%;
+  width: 100px;
+  height: 35px;
+
+  cursor: pointer;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  background-image: linear-gradient(#35017F, #e9e2f4);
+
+  font-size: .45em;
 
 }
 
