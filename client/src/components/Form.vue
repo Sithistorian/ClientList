@@ -10,14 +10,14 @@
   <label :for="selectedClient.phone" class="form-label">Phone:</label>
   <input  :id="selectedClient.phone" class="form-text-input" type="tel" v-model="phone"/><br>
 
-  <label for="selectedClientProviders" class="form-label">Providers:</label>
+  <label id="form-label-for-selectedClientProviders" for="selectedClientProviders" class="form-label">Providers:</label>
   <input  id="selectedClientProviders" type="text" v-model="newProvider" @keyup.enter="createNewProvider({name: newProvider}); resetNewProvider()"/>
 
-  <button type="button"
+  <button id="form-add-provider-button" type="button"
   @click.prevent="createNewProvider({name: newProvider}); resetNewProvider()">Add Provider
   </button><br>
 
-
+  <div id="form-providers-list">
   <div v-for="provider in allProviders" :key="provider._id">
     <ProvidersCheckBoxes
     :provider="provider"
@@ -26,6 +26,7 @@
     @get-all="$emit('get-all')"
     @checked-or-not="manageProviders" >
     </ProvidersCheckBoxes>
+  </div>
   </div>
 
   </form>
@@ -143,7 +144,39 @@ export default {
 }
 
 .form-text-input {
-  align-items: center;
+  width: 400px;
+  height: 30px;
+  margin: 5px;
+}
+
+#selectedClientProviders {
+  width: 300px;
+  height: 30px;
+  margin: 5px;
+
+  position: relative;
+  left: -20px;
+}
+
+#form-label-for-selectedClientProviders {
+  position: relative;
+  left: -20px;
+}
+
+#form-add-provider-button {
+  position: relative;
+  left: -20px;
+  height: 35px;
+}
+
+#form-providers-list {
+  position: relative;
+  left: 50px;
+  width: 305px;
+
+  border: solid;
+  border-width: 1px;
+  border-radius: .5%;
 }
 
 </style>
