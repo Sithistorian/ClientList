@@ -1,12 +1,13 @@
 <template>
 
-<input type="checkbox" :id="this.checkboxId" v-model="checked" @change="$emit('checked-or-not', checked, provider); $emit('get-all')"/>
-<label v-if="!editingProviderName" :for="checkboxId" >{{provider.name}}</label>
+<input type="checkbox" :id="provider._id" v-model="checked" @change="$emit('checked-or-not', checked, provider); $emit('get-all')"/>
 
-<input v-if="editingProviderName" v-model="newProviderName" type="text" :id="provider._id" :placeholder="provider.name" @keyup.enter="changeProviderName(this.nameChangeObj)"/>
+<label v-if="!editingProviderName" :for="provider._id" >{{provider.name}}</label>
 
-<button type="button" @click.prevent="changeProviderName(this.nameChangeObj)"><i class="fa fa-edit"></i></button>
-<button type="button" @click.prevent="deleteProvider(this.provider._id); $emit('get-all')"><i class="fa fa-trash"></i></button>
+<input v-if="editingProviderName" v-model="newProviderName" type="text" :id="provider._id" :placeholder="provider.name" @keyup.enter="changeProviderName(nameChangeObj())"/>
+
+<button type="button" @click.prevent="changeProviderName(nameChangeObj())"><i class="fa fa-edit"></i></button>
+<button type="button" @click.prevent="deleteProvider(provider._id); $emit('get-all')"><i class="fa fa-trash"></i></button>
 
 </template>
 
@@ -24,18 +25,7 @@ export default {
     }
   },
 
-  props: ["providers", "provider"],
-
-  computed: {
-    nameChangeObj () {
-      return {
-        currentProviderName: this.provider.name,
-        newProviderName: this.newProviderName
-        }
-    }
-  },
-
-  props: ["provider", "selectedClientProviders", "showEditModal"],
+  props: ["allProviders", "provider", "selectedClientProviders", "showEditModal"],
 
   methods: {
     deleteProvider: function(providerId) {
@@ -94,6 +84,12 @@ export default {
         }
       }
       },
+    nameChangeObj () {
+      return {
+        currentProviderName: this.provider.name,
+        newProviderName: this.newProviderName
+        }
+    }
   },
 
   emits: ["get-all", "checked-or-not"],

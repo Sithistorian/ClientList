@@ -11,7 +11,7 @@
    <tr v-for="client in clients" :key="client._id">
    <TableRows
    :client="client"
-   :providers="providers"
+   :allProviders="allProviders"
    :setSelectedClient="setSelectedClient"
    @toggle-show-edit-modal="$emit('toggle-show-edit-modal')"
    @get-all="$emit('get-all')">
@@ -30,7 +30,7 @@ export default {
     TableRows
   },
 
-  props: ["clients", "providers", "setSelectedClient"],
+  props: ["clients", "allProviders", "setSelectedClient"],
   emits: ["toggle-show-edit-modal", "get-all"]
 }
 </script>

@@ -3,11 +3,13 @@
   :selectedClient="selectedClient"
   :showEditModal="showEditModal"
   :showNewClientModal="showNewClientModal"
-  :providers="providers"
+  :allProviders="allProviders"
   @get-all="getAll"
+  @reset-selectedClient="resetSelectedClient"
   @toggle-edit-modal="toggleShowEditModal"
   @toggle-new-client-modal="toggleShowNewClientModal">
   </Modal>
+  <h1 id="hack" v-else>Hack</h1>
 
   <h1 id="app-top-bar">Clients
       <button id="app-newClient-button" @click="toggleShowNewClientModal">New Client</button>
@@ -15,7 +17,7 @@
 
   <ClientTable
   :clients="clients"
-  :providers="providers"
+  :allProviders="allProviders"
   :toggleShowEditModal="toggleShowEditModal"
   :setSelectedClient="setSelectedClient"
   @get-all="getAll"
@@ -38,14 +40,14 @@ export default {
   },
   data() {
     return {
-      clients: null,
-      providers: null,
+      clients: [],
+      allProviders: [],
       showEditModal: false,
       showNewClientModal: false,
       selectedClient: {
-        id: null,
-        name: null,
-        email: null,
+        id: '',
+        name: '',
+        email: '',
         phone: null,
         providers: []
       }
@@ -62,7 +64,7 @@ export default {
       .then(res => {
         console.log(res.data)
         this.clients = res.data.clients;
-        this.providers = res.data.providers;
+        this.allProviders = res.data.providers;
         return res.data;
       })
       .catch(err =>  {
@@ -101,6 +103,15 @@ export default {
         email: client.email,
         phone: phone,
         providers: providers,
+      }
+    },
+    resetSelectedClient: function () {
+      this.selectedClient = {
+        id: '',
+        name: '',
+        email: '',
+        phone: null,
+        providers: []
       }
     }
   },
@@ -164,7 +175,10 @@ export default {
   background-image: linear-gradient(#35017F, #e9e2f4);
 
   font-size: .45em;
+}
 
+#hack {
+  color: white;
 }
 
 </style>>

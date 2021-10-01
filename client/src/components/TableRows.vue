@@ -2,8 +2,9 @@
   <td>{{client.name}}</td>
   <td>{{client.email}}</td>
   <td>{{modifyPhone}}</td>
-  <td class="table-rows-provider-table-data">{{getProviderNames(client.providers, providers)}}</td>
-  <td><button @click="setSelectedClient(client, modifyPhone, getProviders(client.providers, providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
+  <td class="table-rows-provider-table-data">{{getProviderNames(client.providers, allProviders)}}</td>
+
+  <td><button @click="setSelectedClient(client, modifyPhone, getProviders(client.providers, allProviders)); $emit('toggle-show-edit-modal')">Edit</button></td>
   <td><button @click="deleteClient(client._id)">Delete</button></td>
 </template>
 
@@ -14,7 +15,7 @@ import axios from 'axios';
 
 export default {
 
-  props: [ "client", "providers", "setSelectedClient"],
+  props: [ "client", "allProviders", "setSelectedClient"],
   methods: {
     getProviderNames: function(clientProviders, allProviders) {
       let result = [];

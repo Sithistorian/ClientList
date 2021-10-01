@@ -1,31 +1,32 @@
 <template>
 <h1 v-if="showEditModal">Editing a Client</h1>
 <h1 v-if="showNewClientModal">Adding a Client</h1>
-
+<div id="modal-container">
 <h1>Client</h1>
 
 <Form
 :showEditModal="showEditModal"
 :selectedClient="selectedClient"
-:providers="providers"
+:allProviders="allProviders"
 @get-all="$emit('get-all')"
 @form-information="setFormInformation">
 </Form>
 
 <h1 v-if="showEditModal">
-  <button form="form" type="button" @click.prevent="deleteClient(this.selectedClient.id)">Delete</button>
-  <button form="form" type="button"
-  @click.prevent="$emit('toggle-edit-modal')"
+  <button type="button" @click.prevent="deleteClient(this.selectedClient.id); $emit('reset-selectedClient')">Delete</button>
+  <button  type="button"
+  @click.prevent="$emit('toggle-edit-modal'); $emit('reset-selectedClient')"
   @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel</button>
-  <button form="form" type="button" @click.prevent="modifyClient(this.formInformation)">Save Client</button>
+  <button type="button" @click.prevent="modifyClient(this.formInformation); $emit('reset-selectedClient')">Save Client</button>
 </h1>
 
 <h1 v-if="showNewClientModal">
-  <button form="form" type="button"
+  <button type="button"
   @click.prevent="$emit('toggle-new-client-modal') "
   @toggle-new-client-modal="$emit('toggle-new-client-modal')">Cancel</button>
-  <button form="form" type="button" @click.prevent="createClient(this.formInformation); $emit('toggle-new-client-modal')">Add Client</button>
+  <button type="button" @click.prevent="createClient(this.formInformation); $emit('toggle-new-client-modal')">Add Client</button>
 </h1>
+</div>
 </template>
 
 <script>
@@ -44,7 +45,7 @@ export default {
   },
 
   props: [
-    "providers",
+    "allProviders",
     "selectedClient",
     "showEditModal",
     "showNewClientModal"
@@ -147,5 +148,25 @@ export default {
 </script>
 
 <style scoped>
+
+#modal-container {
+
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  height: 80vh;
+  width: 80vw;
+  margin-top: -40vh;
+  margin-left: -40vw;
+
+  transition: 1.1s ease-out;
+  box-shadow: -10px 10px 10px rgb(187, 178, 178);
+  overflow: hidden;
+  z-index: 1;
+
+  background-color: white;
+  border: #35017F;
+
+}
 
 </style>

@@ -11,14 +11,14 @@
   <input  :id="selectedClient.phone" type="tel" v-model="phone"/><br>
 
   <label for="selectedClientProviders">Providers</label>
-  <input  id="selectedClientProviders" type="text" v-model="newProvider" @keyup.enter="createNewProvider({name: newProvider}); resetNewProvider(); $emit('get-all')"/>
+  <input  id="selectedClientProviders" type="text" v-model="newProvider" @keyup.enter="createNewProvider({name: newProvider}); resetNewProvider()"/>
 
   <button type="button"
-  @click.prevent="createNewProvider({name: newProvider}); resetNewProvider(); $emit('get-all')">Add Provider
+  @click.prevent="createNewProvider({name: newProvider}); resetNewProvider()">Add Provider
   </button><br>
 
 
-  <div v-for="provider in providers" :key="provider._id">
+  <div v-for="provider in allProviders" :key="provider._id">
     <ProvidersCheckBoxes
     :provider="provider"
     :selectedClientProviders="selectedClient.providers"
@@ -44,14 +44,13 @@ export default {
       id: this.showEditModal ? this.selectedClient.id : null,
       name: this.showEditModal ? this.selectedClient.name : null,
       email: this.showEditModal ? this.selectedClient.email : null,
-      phone: this.showEditModal ? this.selectedClient.phone : null
-
+      phone: this.showEditModal ? this.selectedClient.phone : null,
     }
   },
 
   props: [
     "selectedClient",
-    "providers",
+    "allProviders",
     "showEditModal"
       ],
 
