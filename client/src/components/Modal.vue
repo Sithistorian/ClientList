@@ -14,12 +14,16 @@
 
 <h1 v-if="showEditModal">
   <button form="form" type="button" @click.prevent="deleteClient(this.selectedClient.id)">Delete</button>
-  <button form="form" type="button" @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel</button>
+  <button form="form" type="button"
+  @click.prevent="$emit('toggle-edit-modal')"
+  @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel</button>
   <button form="form" type="button" @click.prevent="modifyClient(this.formInformation)">Save Client</button>
 </h1>
 
 <h1 v-if="showNewClientModal">
-  <button form="form" type="button" @toggle-new-client-modal="$emit('toggle-new-client-modal')">Cancel</button>
+  <button form="form" type="button"
+  @click.prevent="$emit('toggle-new-client-modal') "
+  @toggle-new-client-modal="$emit('toggle-new-client-modal')">Cancel</button>
   <button form="form" type="button" @click.prevent="createClient(this.formInformation); $emit('toggle-new-client-modal')">Add Client</button>
 </h1>
 </template>
