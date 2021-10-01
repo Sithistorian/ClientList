@@ -2,7 +2,7 @@
   <td>{{client.name}}</td>
   <td>{{client.email}}</td>
   <td>{{modifyPhone}}</td>
-  <td>{{getProviderNames(client.providers, providers)}}</td>
+  <td class="table-rows-provider-table-data">{{getProviderNames(client.providers, providers)}}</td>
   <td><button @click="setSelectedClient(client, modifyPhone, getProviders(client.providers, providers)); $emit('toggle-show-edit-modal')">Edit</button></td>
   <td><button @click="deleteClient(client._id)">Delete</button></td>
 </template>
@@ -82,6 +82,15 @@ td {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+
+}
+
+.table-rows-provider-table-data {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+  word-wrap: break-word;
+  max-width: 250px;
 }
 
 </style>

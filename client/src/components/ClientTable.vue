@@ -4,7 +4,7 @@
      <th><strong>Name</strong></th>
      <th>Email</th>
      <th>Phone</th>
-     <th>Providers</th>
+     <th id="client-table-provider-table-head">Providers</th>
      <th></th>
      <th></th>
    </tr>
@@ -49,8 +49,23 @@ table {
 }
 
 th {
-  border: 1px solid #dddddd;
+  border: 2px solid #35017F;
   text-align: left;
   padding: 8px;
+
+  color: #35017F;
+  background-color: rgb(238, 237, 237);
+
+}
+
+#client-table-provider-table-head {
+  border: 2px solid #35017F;
+  text-align: left;
+  padding: 8px;
+
+  color: #35017F;
+  background-color: rgb(238, 237, 237);
+  word-wrap: break-word;
+  max-width: 150px;
 }
 </style>
