@@ -134,6 +134,9 @@ export default {
   border-bottom: 0;
   padding: .5vw;
   padding-top: 20px;
+
+  /* background */
+  background-color: #ded4ed;
 }
 
 #app-newClient-button {
@@ -144,6 +147,9 @@ export default {
   border-radius: 8%;
   width: 100px;
   height: 35px;
+
+  background-image: linear-gradient(#dddddd, #35017F);
+  color: white;
 
 }
 
