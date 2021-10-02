@@ -6,7 +6,7 @@
 
 <input class="provider-name" v-if="editingProviderName" v-model="newProviderName" type="text" :id="provider._id" :placeholder="provider.name" @keyup.enter="changeProviderName(nameChangeObj())"/>
 
-<button id="edit" type="button" @click.prevent="changeProviderName(nameChangeObj())"><i class="fa fa-edit"></i></button>
+<button id="edit" type="button" @click.prevent="toggleEditingProviderName()"><i class="fa fa-edit"></i></button>
 <button id="trash" type="button" @click.prevent="deleteProvider(provider._id); $emit('get-all')"><i class="fa fa-trash"></i></button>
 
 </template>
@@ -49,6 +49,7 @@ export default {
         .catch(err => console.log(err));
       },
     changeProviderName: function(obj) {
+
       var data = JSON.stringify(obj);
 
       var config = {
@@ -69,6 +70,7 @@ export default {
       .catch(err => console.log('Something went wrong', err));
       },
     toggleEditingProviderName: function () {
+
       if (!this.editingProviderName) {
         this.editingProviderName = true;
       } else {
@@ -85,6 +87,7 @@ export default {
       }
       },
     nameChangeObj () {
+
       return {
         currentProviderName: this.provider.name,
         newProviderName: this.newProviderName

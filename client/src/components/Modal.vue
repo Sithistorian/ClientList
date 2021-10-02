@@ -13,18 +13,29 @@
 </Form>
 
 <h1 class="modal-footer-container" v-if="showEditModal">
-  <button id="modal-delete" type="button" @click.prevent="deleteClient(this.selectedClient.id); $emit('reset-selectedClient')">Delete</button>
+
+  <button id="modal-delete" type="button" @click.prevent="deleteClient(this.selectedClient.id); $emit('reset-selectedClient')">Delete
+  </button>
+
   <button class="modal-cancel" type="button"
   @click.prevent="$emit('toggle-edit-modal'); $emit('reset-selectedClient')"
-  @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel</button>
-  <button id="modal-save-client" type="button" @click.prevent="modifyClient(this.formInformation); $emit('reset-selectedClient')">Save Client</button>
+  @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel
+  </button>
+
+  <button id="modal-save-client" type="button" @click.prevent="modifyClient(this.formInformation); $emit('reset-selectedClient')">Save Client
+  </button>
+
 </h1>
 
 <h1 class="modal-footer-container" v-if="showNewClientModal">
+
   <button class="modal-cancel" type="button"
   @click.prevent="$emit('toggle-new-client-modal') "
-  @toggle-new-client-modal="$emit('toggle-new-client-modal')">Cancel</button>
-  <button id="modal-add-client" type="button" @click.prevent="createClient(this.formInformation); $emit('toggle-new-client-modal')">Add Client</button>
+  @toggle-new-client-modal="$emit('toggle-new-client-modal')">Cancel
+  </button>
+
+  <button id="modal-add-client" type="button" @click.prevent="createClient(this.formInformation); $emit('toggle-new-client-modal')">Add Client
+  </button>
 </h1>
 </div>
 </template>
@@ -52,12 +63,15 @@ export default {
       ],
   methods: {
     setModifiedClient: function (mod) {
+
         this.modifiedClient = mod;
       },
     setNewClient: function (newClient) {
+
       this.newClient = newClient;
       },
     modifyClient: function(obj) {
+
       var data = JSON.stringify(obj);
 
       var config = {
@@ -78,6 +92,7 @@ export default {
       .catch(err => console.log('Something went wrong', err));
       },
     createClient: function(client) {
+
     var data = JSON.stringify(client);
 
     var config = {
@@ -121,6 +136,7 @@ export default {
 
       },
     setFormInformation (formData) {
+
       if(this.showEditModal) {
         this.formInformation = {
           clientId: formData.id,

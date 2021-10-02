@@ -42,10 +42,12 @@ export default {
   data() {
     return {
       newProvider: null,
+      newClientProviders: [],
       id: this.showEditModal ? this.selectedClient.id : null,
       name: this.showEditModal ? this.selectedClient.name : null,
       email: this.showEditModal ? this.selectedClient.email : null,
       phone: this.showEditModal ? this.selectedClient.phone : null,
+      providers: this.showEditModal ? this.selectedClient.providers : this.newClientProviders,
     }
   },
 
@@ -57,6 +59,7 @@ export default {
 
   methods: {
     createNewProvider: function(provider) {
+
       var data = JSON.stringify(provider);
 
       var config = {
@@ -77,7 +80,7 @@ export default {
       },
     manageProviders: function (checked, provider) {
 
-      let providers = this.selectedClient.providers;
+      let providers = this.showEditModal ? this.selectedClient.providers : this.newClientProviders;
 
       if(checked){
         let present = false;
@@ -101,6 +104,7 @@ export default {
       this.$emit('get-all')
     },
     validateForm () {
+
       let valid = true;
       if (!this.name || !this.email || !this.phone) {
         valid = false;
@@ -110,16 +114,18 @@ export default {
       }
     },
     sendFormInformation () {
+
       let formData = {
         id: this.id ? this.id : null,
         name: this.name,
         email: this.email,
         phone: this.phone,
-        providers: this.selectedClient.providers
+        providers: this.showEditModal ? this.selectedClient.providers : this.newClientProviders
       }
       this.$emit('form-information', formData)
     },
     resetNewProvider() {
+
       this.newProvider = null;
     }
   },

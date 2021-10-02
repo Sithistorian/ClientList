@@ -97,6 +97,7 @@ export default {
 
     },
     setSelectedClient: function (client, phone, providers) {
+
       this.selectedClient = {
         id: client._id,
         name: client.name,
@@ -106,6 +107,7 @@ export default {
       }
     },
     resetSelectedClient: function () {
+
       this.selectedClient = {
         id: '',
         name: '',
