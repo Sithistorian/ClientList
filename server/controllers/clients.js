@@ -14,13 +14,15 @@ const createClient = async function (req, res) {
 
 const deleteClient = async function(req, res) {
 
-  try {
-    await client.deleteClient(req.body.clientId);
-    res.send('Client Deleted');
+
+  let reply = await client.deleteClient(req.body.clientId)
+  .catch(err => console.log(err));
+
+  if(!reply) {
+    res.status(400).send('Could not delete client')
   }
-  catch(err) {
-    console.log(err)
-  }
+    res.status(200).send('Client Deleted');
+
 }
 
 const getAll = async function (req, res) {

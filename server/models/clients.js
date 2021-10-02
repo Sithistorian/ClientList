@@ -51,22 +51,24 @@ const modifyClient = async function(clientId, newClientObject) {
     console.log('Updated Client', doc)
     return doc
   })
-  .catch(err => console.log('Model:', err))
+  .catch(err => console.log(err))
 
 }
 
 // Delete Client
 
-const deleteClient = async function (clientId) {
+const deleteClient = function (clientId) {
 
-  try {
-    Client.findByIdAndDelete(clientId)
-    .then(res => console.log('Sucessfully removed client', res))
-    .catch(err => console.log(err))
-  }
-  catch(err) {
-    console.log(err)
-  }
+  return Client.findByIdAndDelete(clientId)
+    .then(res => {
+      console.log('Sucessfully removed client', res);
+      return res
+    })
+    .catch(err => {
+      console.log(err);
+      return null;
+    })
+
 }
 
 // Get data as shown in prompt
