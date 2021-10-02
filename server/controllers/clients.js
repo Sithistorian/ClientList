@@ -27,21 +27,13 @@ const deleteClient = async function(req, res) {
 
 const getAll = async function (req, res) {
 
-  if (req.query.populated === 'true') {
-    try {
-      res.send(await client.getClientsAndProvidersPopulated());
-    }
-    catch(err) {
-      console.log(err);
-    }
-  } else {
-    try {
-      res.send(await client.getClientsAndProviders());
-    }
-    catch(err) {
-      console.log(err);
-    }
+  try {
+    res.send(await client.getClientsAndProviders());
   }
+  catch(err) {
+    console.log(err);
+  }
+
 }
 
 const modifyClient = async function (req, res) {

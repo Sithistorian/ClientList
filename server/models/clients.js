@@ -108,42 +108,10 @@ const getClientsAndProviders = async function() {
   return result
 }
 
-// Get Clients Populated
-
-const getClientsAndProvidersPopulated = async function() {
-
-  let promise1 = Client.find({})
-  .lean()
-  .populate("providers")
-  .then(docs => {
-    return docs
-  })
-  .catch(err => console.log('Error reading clients', err))
-
-  let promise2 = Provider.find({})
-  .lean()
-  .then(docs => {
-    return docs
-  })
-  .catch(err => console.log('Error reading providers', err))
-
-  let result = await Promise.all([promise1, promise2])
-  .then(values => {
-    let data = {};
-    data.clients = values[0];
-    data.providers = values[1];
-    return data;
-  })
-  .catch(err => console.log('Something went wrong', err))
-
-  return result;
-
-}
 
 
 module.exports = {
   getClientsAndProviders,
-  getClientsAndProvidersPopulated,
   addProviderToClientUsingEmail,
   createClient,
   deleteClient,
