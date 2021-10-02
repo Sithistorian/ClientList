@@ -12,19 +12,19 @@
 @form-information="setFormInformation">
 </Form>
 
-<h1 v-if="showEditModal">
-  <button type="button" @click.prevent="deleteClient(this.selectedClient.id); $emit('reset-selectedClient')">Delete</button>
-  <button  type="button"
+<h1 class="modal-footer-container" v-if="showEditModal">
+  <button id="modal-delete" type="button" @click.prevent="deleteClient(this.selectedClient.id); $emit('reset-selectedClient')">Delete</button>
+  <button class="modal-cancel" type="button"
   @click.prevent="$emit('toggle-edit-modal'); $emit('reset-selectedClient')"
   @toggle-edit-modal="$emit('toggle-edit-modal')">Cancel</button>
-  <button type="button" @click.prevent="modifyClient(this.formInformation); $emit('reset-selectedClient')">Save Client</button>
+  <button id="modal-save-client" type="button" @click.prevent="modifyClient(this.formInformation); $emit('reset-selectedClient')">Save Client</button>
 </h1>
 
-<h1 v-if="showNewClientModal">
-  <button type="button"
+<h1 class="modal-footer-container" v-if="showNewClientModal">
+  <button class="modal-cancel" type="button"
   @click.prevent="$emit('toggle-new-client-modal') "
   @toggle-new-client-modal="$emit('toggle-new-client-modal')">Cancel</button>
-  <button type="button" @click.prevent="createClient(this.formInformation); $emit('toggle-new-client-modal')">Add Client</button>
+  <button id="modal-add-client" type="button" @click.prevent="createClient(this.formInformation); $emit('toggle-new-client-modal')">Add Client</button>
 </h1>
 </div>
 </template>
@@ -155,9 +155,9 @@ export default {
   top: 55%;
   left: 50%;
   height: 80vh;
-  width: 80vw;
+  width: 60vw;
   margin-top: -40vh;
-  margin-left: -40vw;
+  margin-left: -30vw;
 
   transition: 1.1s ease-out;
   box-shadow: -10px 10px 10px rgb(187, 178, 178);
@@ -179,8 +179,9 @@ export default {
 }
 
 #modal-title {
+  margin: 0;
   color: #35017F;
-  padding-left: 10px;
+  padding: 10px;
   border: solid;
   border-width: 2px;
   border-color: #35017F;
@@ -188,7 +189,70 @@ export default {
   border-left: transparent;
   border-right: transparent;
 
-  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.modal-footer-container {
+  border: solid;
+  border-width: 2px;
+  border-color: #35017F;
+  border-bottom: transparent;
+  border-left: transparent;
+  border-right: transparent;
+
+  display: grid;
+  grid-template-columns: repeat(5, 12vw);
+
+}
+
+button {
+  height: 35px;
+  width: 100px;
+  margin-top: 15px;
+  justify-self: center;
+
+  border: solid;
+  border-width: 1px;
+  border-radius: .5%;
+  background-image: linear-gradient(white, rgb(245, 244, 244));
+}
+
+button:hover {
+  height: 35px;
+  width: 100px;
+  margin-top: 15px;
+  justify-self: center;
+
+
+  border: solid;
+  border-width: 1px;
+  border-radius: .5%;
+  background-image: linear-gradient(rgb(245, 244, 244), white);
+  transition: ease-in-out;
+  cursor: pointer;
+}
+
+#modal-delete {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  color: white;
+
+  background-image: linear-gradient(rgb(255, 0, 0), rgb(216, 13, 13));
+}
+
+.modal-cancel {
+ grid-column-start: 4;
+ grid-column-end: 5;
+}
+
+#modal-save-client {
+ grid-column-start: 5;
+ grid-column-end: 6;
+}
+
+#modal-add-client {
+ grid-column-start: 5;
+ grid-column-end: 6;
 }
 
 </style>
