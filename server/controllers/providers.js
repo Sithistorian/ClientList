@@ -16,13 +16,16 @@ const createNewProvider = async function (req, res) {
 
 const changeProviderName = async function (req, res) {
 
-  try {
-    provider.changeProviderName(req.body.currentProviderName, req.body.newProviderName);
-    res.send(`${req.body.currentProviderName} has been changed to ${req.body.newProviderName}`)
+  let reply = await provider.changeProviderName(req.body.currentProviderName, req.body.newProviderName)
+  .catch(err => console.log(err));
+
+  if(!reply) {
+    res.status(400).send('Something went wrong trying to change the provider name')
+  } else {
+    res.status(200).send(`${req.body.currentProviderName} has been changed to ${req.body.newProviderName}`)
+
   }
-  catch(err) {
-    console.log(err)
-  }
+
 }
 
 const deleteProvider = async function (req, res) {

@@ -22,9 +22,9 @@ const createNewProvider = function (provider) {
 
   //issue: when the currentProviderName is not not correct, no document is found, but I still get the message back. Error handleing is incorrect. This may not be used in the app anyway
 
-  const changeProviderName = async function (currentProviderName, newProviderName) {
+  const changeProviderName = function (currentProviderName, newProviderName) {
 
-    Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, {
+    return Provider.findOneAndUpdate({name: currentProviderName}, {name: newProviderName}, {
       new: true,
       lean: true
     })
@@ -32,7 +32,10 @@ const createNewProvider = function (provider) {
       console.log(`Provider name changed from ${currentProviderName} to ${newProviderName}`);
       return doc
     })
-    .catch(err => console.log('Could not change name', err))
+    .catch(err => {
+      console.log('Could not change name', err)
+      return null;
+    })
 
     }
 
