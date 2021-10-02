@@ -3,13 +3,15 @@ const {client, provider } = require('../models/index.js'); // These are the mode
 
 const createNewProvider = async function (req, res) {
 
-  try {
-    provider.createNewProvider(req.body);
-    res.send(`The provider ${req.body.name} was created`);
+  let reply = await provider.createNewProvider(req.body)
+  .catch(err => console.log(err));
+
+  if(!reply) {
+    res.status(400).send('An error occured creating the provider')
+  } else {
+    res.status(200).send(`The provider ${req.body.name} was created`);
   }
-  catch(err) {
-    console.log(err)
-  }
+
 }
 
 const changeProviderName = async function (req, res) {

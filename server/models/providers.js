@@ -4,15 +4,19 @@ const { Provider } = require('../database/dbModels.js')
 
 // Create new Provider (this will take an object with a name: String, client: array of Client ids as Strings)
 
-const createNewProvider = async function (provider) {
+const createNewProvider = function (provider) {
 
-  Provider.create({
+  return Provider.create({
     name: provider.name
   })
   .then(doc => {
     console.log(`${provider.name} was successfully saved to the database`);
+    return doc;
   })
-  .catch(err => console.log(`${provider.name} was NOT successfully saved to the database`, err))
+  .catch(err => {
+    console.log(`${provider.name} was NOT successfully saved to the database`, err);
+    return null;
+})
 
 }
 
