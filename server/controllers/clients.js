@@ -28,9 +28,10 @@ const deleteClient = async function(req, res) {
 const getAll = async function (req, res) {
 
   try {
-    res.send(await client.getClientsAndProviders());
+    res.status(200).send(await client.getClientsAndProviders());
   }
   catch(err) {
+    res.status(400).send(err)
     console.log(err);
   }
 
