@@ -40,9 +40,15 @@ const createNewProvider = function (provider) {
     }
 
   const deleteProvider = async function(providerId) {
-    Provider.deleteOne({_id: providerId})
-    .then(doc => console.log(`Provider ${providerId} was removed`))
-    .catch(err => console.log(err))
+    return Provider.deleteOne({_id: providerId})
+    .then(doc => {
+      console.log(`Provider ${providerId} was removed`);
+      return doc;
+    })
+    .catch(err => {
+      console.log(err);
+      return null;
+    })
   }
 
 

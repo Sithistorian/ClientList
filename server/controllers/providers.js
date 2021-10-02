@@ -25,17 +25,18 @@ const changeProviderName = async function (req, res) {
     res.status(200).send(`${req.body.currentProviderName} has been changed to ${req.body.newProviderName}`)
 
   }
-
 }
 
 const deleteProvider = async function (req, res) {
-  try {
-    provider.deleteProvider(req.body.providerId);
-    res.send('provider deleted');
+  let reply = await provider.deleteProvider(req.body.providerId)
+  .catch(err => console.log(err));
+
+  if(!reply) {
+    res.status(400).send('Something went wrong deleting the provider')
+  } else {
+    res.status(200).send('Provider deleted');
   }
-  catch(err) {
-    console.log(err)
-  }
+
 
 }
 
