@@ -85,7 +85,7 @@ export default {
 
       axios(config)
       .then(res => {
-        console.log('Modified the Client for sure!', res.data);
+        console.log(res);
         this.$emit('get-all')
         })
       .then(() => this.$emit('toggle-edit-modal'))

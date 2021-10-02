@@ -44,13 +44,14 @@ const getAll = async function (req, res) {
 
 const modifyClient = async function (req, res) {
 
-  try {
-   await client.modifyClient(req.body.clientId, req.body.modifiedClient);
-   res.send('Client Updated')
-  }
-  catch(err) {
-    console.log(err)
-  }
+ let reply = await client.modifyClient(req.body.clientId, req.body.modifiedClient)
+ .catch(err => console.log(err))
+
+ if(!reply) {
+   res.send('There was an error modifying client')
+ } else {
+  res.status(200).send(reply);
+ }
 
 }
 
