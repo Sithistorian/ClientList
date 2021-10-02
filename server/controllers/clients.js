@@ -13,15 +13,13 @@ const getClientById = async function (req, res) {
 
 const createClient = async function (req, res) {
 
-  try {
-    await client.createClient(req.body)
-    res.send('Client created')
-  }
-  catch(err) {
-    console.log(err)
-  }
+  let reply = await client.createClient(req.body)
 
-
+  if(!reply) {
+    res.send('There was an error creating client')
+  } else {
+    res.send('Client Created')
+  }
 
 }
 

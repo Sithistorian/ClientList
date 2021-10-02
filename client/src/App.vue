@@ -9,7 +9,7 @@
   @toggle-edit-modal="toggleShowEditModal"
   @toggle-new-client-modal="toggleShowNewClientModal">
   </Modal>
-  <h1 id="hack" v-else>Hack</h1>
+  <h1 v-else id="hack">Hack</h1>
 
   <h1 id="app-top-bar">Clients
       <button id="app-newClient-button" @click="toggleShowNewClientModal">New Client</button>
@@ -54,10 +54,10 @@ export default {
     }
   },
   methods: {
-    getAll: function(populated = 'false') {
+    getAll: function() {
       var config = {
         method: 'get',
-        url: `http://localhost:3000/all/?populated=${populated}`
+        url: `http://localhost:3000/all`
       };
 
       axios(config)

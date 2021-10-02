@@ -6,7 +6,10 @@ const { Client, Provider } = require('../database/dbModels.js');
 
 const getClientById = async function (id) {
   try {
-    return await Client.findById(id).lean();
+    return await Client.findById(id)
+    .lean()
+    .then(doc => console.log('Here is the client:', doc))
+    .catch(err => console.log(err));
   }
   catch(err) {
     console.log(err)
@@ -15,20 +18,19 @@ const getClientById = async function (id) {
 
 // Add new Client (this will take a client object as a parameter)
 
-const createClient = async function(client) {
+const createClient = function(client) {
 
-  try {
-    await Client.create({
+  return Client.create({
       name: client.name,
       email: client.email,
       phone: client.phone,
       providers: client.providers
     })
-    console.log('Client sucessfully created')
-  }
-  catch(err) {
-    console.log(err)
-  }
+    .then(doc => doc, err => {
+      console.log('Error occured creating client:', err);
+      return null;
+    })
+    .catch(err => console.log(err))
 }
 
 // Modify Client Information
@@ -39,8 +41,8 @@ const addProviderToClientUsingEmail = async function (clientEmail, providerId) {
 
   try {
     await Client.findOneAndUpdate({email: clientEmail}, {$push: {providers: providerId}}, {new: true})
-    console.log(`Provider ${providerId} added to client`);
-
+    .then(() => console.log(`Provider ${providerId} added to client`))
+    .catch(err => console.log(err));
   }
   catch(err) {
     console.log(err)
@@ -62,7 +64,7 @@ const modifyClient = async function(clientId, newClientObject) {
       if (err) {
         console.log(err)
       } else {
-        console.log(model);
+        console.log('Client updated:', model);
         return model;
       }
     })
@@ -72,7 +74,7 @@ const modifyClient = async function(clientId, newClientObject) {
     })
   }
   catch(err) {
-    console.log('Promise failure error',err)
+    console.log(err)
   }
 }
 
