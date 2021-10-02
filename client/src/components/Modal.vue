@@ -1,8 +1,8 @@
 <template>
-<h1 v-if="showEditModal">Editing a Client</h1>
-<h1 v-if="showNewClientModal">Adding a Client</h1>
+<h1 class="modal-heading" v-if="showEditModal">Editing a Client</h1>
+<h1 class="modal-heading" v-if="showNewClientModal">Adding a Client</h1>
 <div id="modal-container">
-<h1>Client</h1>
+<h1 id="modal-title">Client</h1>
 
 <Form
 :showEditModal="showEditModal"
@@ -172,6 +172,23 @@ export default {
   display: flex;
   flex-direction: column;
 
+}
+
+.modal-heading {
+  color: #35017F
+}
+
+#modal-title {
+  color: #35017F;
+  padding-left: 10px;
+  border: solid;
+  border-width: 2px;
+  border-color: #35017F;
+  border-top: transparent;
+  border-left: transparent;
+  border-right: transparent;
+
+  margin-top: 20px;
 }
 
 </style>
