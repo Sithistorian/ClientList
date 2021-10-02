@@ -2,20 +2,6 @@ const db = require('../database/index.js');
 const { Client, Provider } = require('../database/dbModels.js');
 
 
-// Get single Client by Id
-
-const getClientById = async function (id) {
-  try {
-    return await Client.findById(id)
-    .lean()
-    .then(doc => console.log('Here is the client:', doc))
-    .catch(err => console.log(err));
-  }
-  catch(err) {
-    console.log(err)
-  }
-}
-
 // Add new Client (this will take a client object as a parameter)
 
 const createClient = function(client) {
@@ -166,7 +152,6 @@ module.exports = {
   getClientsAndProviders,
   getClientsAndProvidersPopulated,
   addProviderToClientUsingEmail,
-  getClientById,
   createClient,
   deleteClient,
   modifyClient

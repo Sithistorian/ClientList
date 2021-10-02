@@ -1,22 +1,11 @@
 const {client} = require('../models/index.js');
 
-const getClientById = async function (req, res) {
-
-  try {
-    res.send(await client.getClientById(req.params.clientId))
-  }
-  catch(err) {
-    console.log(err)
-  }
-
-}
-
 const createClient = async function (req, res) {
 
   let reply = await client.createClient(req.body)
 
   if(!reply) {
-    res.send('There was an error creating client')
+    res.send('An error occured creating the client')
   } else {
     res.send('Client Created')
   }
@@ -67,7 +56,6 @@ const modifyClient = async function (req, res) {
 
 
 module.exports = {
-  getClientById,
   modifyClient,
   createClient,
   deleteClient,
