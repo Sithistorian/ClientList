@@ -18,7 +18,7 @@
   </button><br>
 
   <div id="form-providers-list">
-  <div v-for="provider in allProviders" :key="provider._id">
+  <div class="form-provider" v-for="provider in allProviders" :key="provider._id">
     <ProvidersCheckBoxes
     :provider="provider"
     :selectedClientProviders="selectedClient.providers"
@@ -203,6 +203,12 @@ label {
   border-radius: .5%;
 
   overflow: scroll;
+
+}
+
+.form-provider {
+  display: grid;
+  grid-template-columns: repeat(20, 15.25px);
 }
 
 </style>

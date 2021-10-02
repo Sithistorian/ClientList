@@ -1,13 +1,13 @@
 <template>
 
-<input type="checkbox" :id="provider._id" v-model="checked" @change="$emit('checked-or-not', checked, provider); $emit('get-all')"/>
+<input class="checkbox" type="checkbox" :id="provider._id" v-model="checked" @change="$emit('checked-or-not', checked, provider); $emit('get-all')"/>
 
-<label v-if="!editingProviderName" :for="provider._id" >{{provider.name}}</label>
+<label class="provider-name" v-if="!editingProviderName" :for="provider._id" >{{provider.name}}</label>
 
-<input v-if="editingProviderName" v-model="newProviderName" type="text" :id="provider._id" :placeholder="provider.name" @keyup.enter="changeProviderName(nameChangeObj())"/>
+<input class="provider-name" v-if="editingProviderName" v-model="newProviderName" type="text" :id="provider._id" :placeholder="provider.name" @keyup.enter="changeProviderName(nameChangeObj())"/>
 
-<button type="button" @click.prevent="changeProviderName(nameChangeObj())"><i class="fa fa-edit"></i></button>
-<button type="button" @click.prevent="deleteProvider(provider._id); $emit('get-all')"><i class="fa fa-trash"></i></button>
+<button id="edit" type="button" @click.prevent="changeProviderName(nameChangeObj())"><i class="fa fa-edit"></i></button>
+<button id="trash" type="button" @click.prevent="deleteProvider(provider._id); $emit('get-all')"><i class="fa fa-trash"></i></button>
 
 </template>
 
@@ -102,5 +102,44 @@ export default {
 </script>
 
 <style scoped>
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.checkbox {
+  grid-column-start: 1;
+  grid-column-end: 2;
+
+}
+.provider-name {
+  grid-column-start: 3;
+  grid-column-end: 16;
+
+}
+
+#edit {
+  grid-column-start: 17;
+  grid-column-end: 19;
+}
+
+#trash {
+  grid-column-start: 19;
+  grid-column-end: 20;
+
+}
+
+#trash:hover {
+  color: red
+}
+
+#edit:hover {
+  color: purple;
+}
 
 </style>
