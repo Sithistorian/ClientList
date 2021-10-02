@@ -1,19 +1,6 @@
 const {client, provider } = require('../models/index.js'); // These are the models
 
 
-const getProviderById = async function (req, res) {
-
-  let id = req.params.providerId
-
-  try {
-    res.send(await provider.getProviderById(id));
-  }
-  catch(err){
-    console.log(err)
-  }
-
-}
-
 const createNewProvider = async function (req, res) {
 
   try {
@@ -49,7 +36,6 @@ const deleteProvider = async function (req, res) {
 
 
 module.exports = {
-  getProviderById,
   createNewProvider,
   changeProviderName,
   deleteProvider
