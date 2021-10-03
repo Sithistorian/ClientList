@@ -191,7 +191,7 @@ export default {
 }
 
 .modal-heading {
-  color: #35017F
+  color: #35017F;
 }
 
 #modal-title {
@@ -254,6 +254,16 @@ button:hover {
   color: white;
 
   background-image: linear-gradient(rgb(255, 0, 0), rgb(216, 13, 13));
+}
+
+#modal-delete:hover {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  color: white;
+
+  cursor: pointer;
+  background-image: linear-gradient(rgb(216, 13, 13), rgb(255, 0, 0));
+
 }
 
 .modal-cancel {
