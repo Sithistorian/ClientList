@@ -1,8 +1,8 @@
 openapi: 3.0.1
 info:
-  title: defaultTitle
-  description: defaultDescription
-  version: "0.1"
+  title: Client List Coding Challenge
+  description: This is the API for the Client list.
+  version: 1.0-oas3
 servers:
   - url: http://localhost:3000
 paths:
@@ -35,8 +35,36 @@ paths:
                 type: string
               examples:
                 "0":
-                  value: |-
-                    Name has been changed
+                  value: Name has been changed
+      servers:
+        - url: http://localhost:3000
+    servers:
+      - url: http://localhost:3000
+  /providers/deleteProvider:
+    post:
+      description: Deletes the provider of the providerId passed.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                providerId:
+                  type: string
+            examples:
+              "0":
+                value: |-
+                  {
+                     "providerId": "61589d278033e3e4fe9465cc"
+                  }
+      responses:
+        "200":
+          description: Returns confirmation of deletion
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
       servers:
         - url: http://localhost:3000
     servers:
@@ -49,117 +77,20 @@ paths:
           name: populated
           schema:
             type: string
-          description: Pass this the string 'true' to populate the clients' providers arrays with the whole provider rather than just the provider\'s id (see example 0)
+          description: >-
+            This will get all the clients and all the providers. The client's provider array will be populated with the provider's id and not the provider itself.
       responses:
         "200":
-          description: Gets an object with a clients key and a providers key. The values of those keys is an array of all the clients and all the providers respectively.
+          description: >-
+            Gets an object with a clients key and a providers key. The values of
+            those keys is an array of all the clients and all the providers
+            respectively.
           content:
             application/json; charset=utf-8:
               schema:
                 type: object
               examples:
                 "0":
-                  value: |-
-                    {
-                      "clients": [
-                          {
-                              "_id": "614a3d83af489f20baa19068",
-                              "name": "Test1",
-                              "email": "test1@krfs.com",
-                              "phone": 3050005555,
-                              "providers": [
-                                  {
-                                      "_id": "614a3d83af489f20baa19070",
-                                      "name": "Provider3",
-                                      "__v": 0
-                                  }
-                              ],
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614a3d83af489f20baa19069",
-                              "name": "Kriea",
-                              "email": "Sith@goodgirl.com",
-                              "phone": 7777777777,
-                              "providers": [
-                                  {
-                                      "_id": "614a3d83af489f20baa1906e",
-                                      "name": "Provider1",
-                                      "__v": 0
-                                  }
-                              ],
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614cc26e291c1df0562d6120",
-                              "name": "Sharmane",
-                              "email": "this@that.com",
-                              "phone": 5489770987,
-                              "providers": [
-                                  {
-                                      "_id": "614a3d83af489f20baa19072",
-                                      "name": "Provider5",
-                                      "__v": 0
-                                  },
-                                  {
-                                      "_id": "614ba218c8ea35cc2a2c8adf",
-                                      "name": "What does it matter?",
-                                      "__v": 0
-                                  }
-                              ],
-                              "__v": 0
-                          }
-                      ],
-                      "providers": [
-                          {
-                              "_id": "614a3d83af489f20baa1906e",
-                              "name": "Provider1",
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614a3d83af489f20baa1906f",
-                              "name": "Provider2",
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614a3d83af489f20baa19070",
-                              "name": "Provider3",
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614a3d83af489f20baa19071",
-                              "name": "Provider4",
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614a3d83af489f20baa19072",
-                              "name": "Provider5",
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614ba218c8ea35cc2a2c8adf",
-                              "name": "What does it matter?",
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614ba318c8ea35cc2a2c8ae1",
-                              "name": "Dark Wing Duck!",
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614ba577cfd01ff4f5107649",
-                              "name": "Bagheera",
-                              "__v": 0
-                          },
-                          {
-                              "_id": "614cc7e3ddc7a671a714edbd",
-                              "name": "RainDrops",
-                              "__v": 0
-                          }
-                      ]
-                    }
-
-                "1":
                   value: |-
                     {
                       "clients": [
@@ -231,79 +162,8 @@ paths:
                           }
                       ]
                     }
-
       servers:
         - url: http://localhost:3000
-    servers:
-      - url: http://localhost:3000
-  /providers/id/{providerId}:
-    get:
-      description: Get a single provider with that provider's id
-      parameters:
-        - in: path
-          name: providerId
-          schema:
-            type: integer
-          required: true # <----------
-          description: Numeric ID of the provider to get.
-      responses:
-        "200":
-          description: Responds with the provider
-          content:
-            application/json; charset=utf-8:
-              schema:
-                type: object
-              examples:
-                "0":
-                  value: |-
-                    {
-                      "_id": "614cc7e3ddc7a671a714edbd",
-                      "name": "RainDrops",
-                      "__v": 0
-                    }
-
-      servers:
-        - url: http://localhost:3000
-    servers:
-      - url: http://localhost:3000
-  /clients/id/{clientId}:
-    get:
-      description: Get a single client with the client's id
-      parameters:
-        - in: path
-          name: clientId
-          schema:
-            type: integer
-          required: true # <----------
-          description: Numeric ID of the client to get.
-      responses:
-        "200":
-          description: Responds with the client
-          content:
-            application/json; charset=utf-8:
-              schema:
-                type: object
-              examples:
-                "0":
-                  value:
-                    {
-                      "_id": "614a3d83af489f20baa19067",
-                      "name": "Kraytenstien",
-                      "email": "Krayt@dragon.com",
-                      "phone": 9875998433,
-                      "providers":
-                        [
-                          "614a3d83af489f20baa19072",
-                          "614a3d83af489f20baa19071",
-                          "614a3d83af489f20baa19070",
-                        ],
-                      "__v": 0,
-                    }
-      servers:
-        - url: http://localhost:3000
-    servers:
-      - url: http://localhost:3000
-  /all/:
     servers:
       - url: http://localhost:3000
   /clients/createClient:
@@ -394,15 +254,14 @@ paths:
                 type: string
               examples:
                 "0":
-                  value: |-
-                    Client modified
+                  value: Client modified
       servers:
         - url: http://localhost:3000
     servers:
       - url: http://localhost:3000
   /clients/deleteClient:
     post:
-      description: DeletesClient
+      description: This deletes a client.
       requestBody:
         content:
           application/json:
@@ -426,8 +285,7 @@ paths:
                 type: string
               examples:
                 "0":
-                  value: |-
-                    Client deleted
+                  value: Client deleted
       servers:
         - url: http://localhost:3000
     servers:
@@ -458,8 +316,7 @@ paths:
                 type: string
               examples:
                 "0":
-                  value: |-
-                    The provider {providerName} was created
+                  value: The provider {providerName} was created
       servers:
         - url: http://localhost:3000
     servers:
