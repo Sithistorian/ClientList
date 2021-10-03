@@ -9,7 +9,7 @@
   @toggle-edit-modal="toggleShowEditModal"
   @toggle-new-client-modal="toggleShowNewClientModal">
   </Modal>
-  <h1 v-else id="hack">Hack</h1>
+  <h1 v-else id="hack">CSS Hack</h1>
 
   <h1 id="app-top-bar">Clients
       <button id="app-newClient-button" @click="toggleShowNewClientModal">New Client</button>
