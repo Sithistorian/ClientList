@@ -42,7 +42,7 @@ paths:
       - url: http://localhost:3000
   /providers/deleteProvider:
     post:
-      description: Deletes the provider of the providerId passed.
+      description: Deletes the provider corresponding to the providerId that is passed.
       requestBody:
         content:
           application/json:
@@ -64,7 +64,10 @@ paths:
             text/html; charset=utf-8:
               schema:
                 type: string
-              examples: {}
+              examples:
+                "0":
+                  value: |-
+                    Client deleted
       servers:
         - url: http://localhost:3000
     servers:
